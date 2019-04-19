@@ -133,8 +133,12 @@ html {
     padding: 2.1rem 0
 
 }
+.header-area .top-header-area .top-header-content .category .list .list-item:hover{
+    
+}
 .header-area .top-header-area .top-header-content .category .list .list-item:hover .dropdown{
     display: inline-block;
+
 }
 
 .header-area .top-header-area .top-header-content .category .list .list-item .dropdown {
@@ -234,3 +238,4 @@ html {
     color: #fff;
     opacity: 1;
 }
+
