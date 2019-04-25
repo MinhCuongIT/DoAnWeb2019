@@ -143,6 +143,9 @@ html {
   color: white;
 }
 
+.header-area .top-header-area .top-header-content .logo-category_ico .logo{
+  margin-right: 10px;
+}
 .header-area .top-header-area .top-header-content .logo-category_ico .logo img{
     border-radius: 50%;
 }
@@ -504,6 +507,93 @@ html {
   margin-top: 1.5rem;
   font-size: 1.5rem;
 }
+/*----------------Hien thi cua so dang nhap----------------------*/
+
+/* Full-width input fields */
+.modal input[type=text], input[type=password] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 26px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+	  font-size:16px;
+}
+
+/* Set a style for all buttons */
+.modal button {
+    background-color: #0C5B7D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 26px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 90%;
+	  font-size:20px;
+}
+.modal button:hover {
+    opacity: 0.8;
+}
+
+/* Center the image and position the close button */
+.modal .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+.modal .avatar {
+    width: 200px;
+	height:200px;
+    border-radius: 50%;
+}
+
+/* The Modal (background) */
+.modal {
+	display:none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content Box */
+.modal .modal-content {
+    background-color: #fefefe;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 40%; 
+	padding-bottom: 30px;
+}
+
+/* The Close Button (x) */
+.modal .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.modal .close:hover,.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.modal .animate {
+    animation: zoom 0.6s
+}
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+/*---------------------------------------------------------------*/
 /*################################### Footer ################################# */
 .footer-bottom {
   background: #0C5B7D;
