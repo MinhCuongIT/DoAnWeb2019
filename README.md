@@ -3,4 +3,3 @@
 TH2016/33
 Trần Minh Cường
 Nguyễn Thị Ngọc
-Lê Phú Sang
