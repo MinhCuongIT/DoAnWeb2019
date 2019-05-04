@@ -15,7 +15,6 @@
 .glyphicon-trash{
     color:#d60e0e;
 }
-/* .glyphicon-plus{
-    background:#0aa33d;
-    colo
-} */
+.glyphicon-triangle-bottom{
+    display: inline-block;
+}
