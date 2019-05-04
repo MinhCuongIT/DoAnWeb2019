@@ -1,3 +1,8 @@
+.header-area .top-header-area .login-search-area .login a img{
+  width: 40px;
+  border-radius: 50%;
+}
+
 .content-widget{
     padding-bottom: 30px;
     padding-top: 7rem;
