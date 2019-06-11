@@ -18,7 +18,34 @@ app.use(morgan('dev'))
 require('./middlewares/view-engine')(app)
 
 app.get('/', (req, res) => {
-    res.render('home')
+    Promise.all([
+        categoryModel.mainCarousel(1),
+        categoryModel.mainCarousel(2),
+        categoryModel.mainCarousel(3),
+        categoryModel.mainCarousel(4),
+        categoryModel.mainCarousel(5),
+        categoryModel.mainCarousel(6)
+    ])
+        .then(([m1, m2, m3, m4, m5, m6]) => {
+            m1[0].active = true
+            m2[0].active = true
+            m3[0].active = true
+            m4[0].active = true
+            m5[0].active = true
+            m6[0].active = true
+            res.render('home', {
+                m1,
+                m2,
+                m3,
+                m4,
+                m5,
+                m6
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            next()
+        })
 
 
 })

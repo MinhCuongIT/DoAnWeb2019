@@ -14,27 +14,19 @@
                             <li data-target="#carouselKinhDoanh" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m1}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4; vertical-align: middle;" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselKinhDoanh" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,27 +52,19 @@
                             <li data-target="#carouselThiTruong" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m2}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselThiTruong" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -107,27 +91,19 @@
                             <li data-target="#carouselSucKhoe" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m3}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselSucKhoe" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -152,27 +128,19 @@
                             <li data-target="#carouselCongNghe" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m4}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselCongNghe" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -199,27 +167,19 @@
                             <li data-target="#carouselTheGioi" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m5}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselTheGioi" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -244,27 +204,19 @@
                             <li data-target="#carouselTheThao" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>First slide label</h6>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
+                            {{#each m6}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Second slide label</h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/Images/kinhdoan_no.jpg" class="d-block w-100" alt="/Images/kinhdoan_no.jpg">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6>Third slide label</h6>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <a class="carousel-control-prev" href="#carouselTheThao" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

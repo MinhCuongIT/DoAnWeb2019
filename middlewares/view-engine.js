@@ -14,6 +14,9 @@ module.exports = function (app) {
             mySubString: str => {
                 return str.substr(0, 125) + "...";
             },
+            mySubString2: str => {
+                return str.substr(0, 55) + "...";
+            },
             myDatetime: date =>{
                 return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
             },
