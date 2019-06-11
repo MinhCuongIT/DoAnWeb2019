@@ -84,36 +84,27 @@
             <div class="col-sm-2">
                 <div class="card">
                     <div class="card-header p-2">
-                        <b>Top bài viết mới nhất</b>
+                        <b style="color: red">Top bài đọc nhiều nhất</b>
                     </div>
                     <div class="card-body p-0">
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's
-                                    content.</p>
+                        {{#each lcTop10Vew}}
+                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                            <div class="card mb-2 shadow">
+                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
+                                <div style="padding: 0.25rem" class="card-body">
+                                    <h6 class="card-title">{{title}}</h6>
+                                    <p style="font-size: 12px" class="font-italic">
+                                        {{myDatetime date}}
+                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+                                        {{views}}
+                                    </p>
+                                    <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
+                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                </div>
+                                
                             </div>
-                        </div>
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
+                        </a>
+                        {{/each}}
                     </div>
 
 
@@ -125,39 +116,27 @@
             <div class="col-sm-2 ">
                 <div class="card">
                     <div class="card-header p-2">
-                        <b>Top bài đọc nhiều nhất</b>
+                        <b style="color: red">Top bài viết mới nhất</b>
                     </div>
                     <div class="card-body p-0">
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the
-                                    card's
-                                    content.</p>
+                        {{#each lcTop10New}}
+                            
+                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                            <div class="card mb-2 shadow">
+                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
+                                <div style="padding: 0.25rem" class="card-body">
+                                    <h6 class="card-title">{{title}}</h6>
+                                    <p style="font-size: 12px" class="font-italic">
+                                        {{myDatetime date}}
+                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+                                        {{views}}
+                                    </p>
+                                    <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
+                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the
-                                    card's
-                                    content.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="Images/kinhdoanh_vin.jpg" class="card-img-top" alt="Images/kinhdoanh_vin.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p style="font-size: 13px" class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the
-                                    card's
-                                    content.</p>
-                            </div>
-                        </div>
+                        </a>
+                        {{/each}}
                     </div>
 
 
@@ -220,8 +199,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        { { { _sections.js } } }
-</body >
+    {{{_sections.js}}}
+</body>
 
-</html >
+</html>

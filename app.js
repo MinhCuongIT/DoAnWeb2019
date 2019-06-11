@@ -3,6 +3,8 @@ var app = express();
 var morgan = require('morgan');
 var port = 3000;
 
+var categoryModel = require('./models/category.model')
+
 app.use(express.static('public'));
 require('./middlewares/session')(app)
 require('./middlewares/passport')(app)
@@ -17,22 +19,24 @@ require('./middlewares/view-engine')(app)
 
 app.get('/', (req, res) => {
     res.render('home')
+
+
 })
 
 app.use('/account', require('./routes/account.route'))
 // app.use('/categories', require('./routes/category.route'))
 // app.use('/admin/categories', require('./routes/admin/category.route'))
 
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     res.render('404', {
-        layout:false
+        layout: false
     })
 })
 
 app.use((error, req, res, next) => {
     res.render('error', {
         layout: false,
-        msg:error.message,
+        msg: error.message,
         error
     })
 })

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var productModel = require('../models/product.model');
 
-router.get('/:id/products', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
 
 
     // throw new Error('This is an error for test!')
