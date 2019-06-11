@@ -1,0 +1,59 @@
+<div class="card shadow">
+    <h1 class="card-header">
+        Products
+    </h1>
+    <div class="card-body">
+        <div class="row">
+            {{#each this.products}}
+            <div class="col-sm-4 mb-3 ">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ImageLink}}" title="{{ProName}}" alt="{{ProName}}" class="card-img-top">
+                    <div class="card-body">
+                        <h6 class="card-title font-weight-bold">{{ProName}}</h6>
+                        <h5 class="card-title text-danger">{{format Price}}</h5>
+                        <p class="card-text">{{Describe}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-outline-primary" href="javascript:;" role="button">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            Details
+                        </a>
+                        <a class="btn btn-outline-success" href="javascript:;" role="button">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            Add to cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {{#each this.pages}}
+                    {{#if active}}
+                    <li class="page-item active">
+                        <a class="page-link" href="javascript:;">{{iPage}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{iPage}}">{{iPage}}</a>
+                    </li>
+                    {{/if}}
+
+                    {{/each}}
+                    <li class="page-item">
+                        <a class="page-link" href="" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
