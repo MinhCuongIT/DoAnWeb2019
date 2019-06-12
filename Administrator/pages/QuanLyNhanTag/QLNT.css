@@ -1,0 +1,20 @@
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: table-cell;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-pencil{
+    color:#0099ff;
+}
+.glyphicon-trash{
+    color:#d60e0e;
+}
+.glyphicon-triangle-bottom{
+    display: inline-block;
+}
