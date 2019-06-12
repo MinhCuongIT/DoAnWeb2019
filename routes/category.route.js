@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var productModel = require('../models/product.model');
+var productModel = require('../models/post.model');
 
 router.get('/:id', (req, res, next) => {
 
@@ -26,6 +26,7 @@ router.get('/:id', (req, res, next) => {
             productModel.countByCat(id),
         ])
             .then(([rows, count_rows]) => {
+                
                 res.locals.lcCategories.forEach(c => {
                     if (c.CatID === +id) {
                         c.isActive = true;

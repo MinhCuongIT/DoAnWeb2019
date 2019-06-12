@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var port = 3000;
 
 var categoryModel = require('./models/category.model')
+var postModel = require('./models/post.model')
 
 app.use(express.static('public'));
 require('./middlewares/session')(app)
@@ -18,6 +19,15 @@ app.use(morgan('dev'))
 require('./middlewares/view-engine')(app)
 
 app.get('/', (req, res) => {
+
+    var page = req.query.page || 1
+    if (page < 1) {
+        page = 1
+    }
+
+    var limit = 9
+    var offset = (page - 1) * limit
+
     Promise.all([
         categoryModel.mainCarousel(1),
         categoryModel.mainCarousel(2),
@@ -25,15 +35,32 @@ app.get('/', (req, res) => {
         categoryModel.mainCarousel(4),
         categoryModel.mainCarousel(5),
         categoryModel.mainCarousel(6),
-        categoryModel.tinHotTrongNgay()
+        categoryModel.tinHotTrongNgay(),
+        postModel.pageByCat(limit, offset),
+        postModel.countByCat()
+
     ])
-        .then(([m1, m2, m3, m4, m5, m6, tinhots]) => {
+        .then(([m1, m2, m3, m4, m5, m6, tinhots, rows_post, count_rows]) => {
             m1[0].active = true
             m2[0].active = true
             m3[0].active = true
             m4[0].active = true
             m5[0].active = true
             m6[0].active = true
+
+            var total = count_rows[0].total
+            var nPages = Math.floor(total / limit)
+            if (total % limit > 0) {
+                nPages++
+            }
+            var pages = []
+            for (var i = 1; i <= nPages; i++) {
+                pages.push({
+                    iPage: i,
+                    active: i === +page
+                })
+            }
+
             res.render('home', {
                 m1,
                 m2,
@@ -41,7 +68,9 @@ app.get('/', (req, res) => {
                 m4,
                 m5,
                 m6,
-                tinhots
+                tinhots,
+                post: rows_post,
+                pages
             })
         })
         .catch(err => {
