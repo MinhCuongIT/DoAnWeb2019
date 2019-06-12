@@ -36,6 +36,14 @@ module.exports = {
             LIMIT 3
         `);
     },
+    tinHotTrongNgay: () => {
+        return db.load(`
+            SELECT  DISTINCT *
+            FROM    post p left join categories c on p.tagId = c.id
+            ORDER BY p.date desc, p.views desc
+            LIMIT 6
+        `);
+    },
     add: entity => {
         return db.add('Categories', entity)
     },

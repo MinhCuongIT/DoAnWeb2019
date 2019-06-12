@@ -24,9 +24,10 @@ app.get('/', (req, res) => {
         categoryModel.mainCarousel(3),
         categoryModel.mainCarousel(4),
         categoryModel.mainCarousel(5),
-        categoryModel.mainCarousel(6)
+        categoryModel.mainCarousel(6),
+        categoryModel.tinHotTrongNgay()
     ])
-        .then(([m1, m2, m3, m4, m5, m6]) => {
+        .then(([m1, m2, m3, m4, m5, m6, tinhots]) => {
             m1[0].active = true
             m2[0].active = true
             m3[0].active = true
@@ -39,7 +40,8 @@ app.get('/', (req, res) => {
                 m3,
                 m4,
                 m5,
-                m6
+                m6,
+                tinhots
             })
         })
         .catch(err => {
