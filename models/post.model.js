@@ -12,7 +12,7 @@ module.exports = {
         return db.load(`
         select *
         from post p left join categories c on p.catId = c.id
-        limit 9 offset 9
+        limit ${limit} offset ${offset}
         `);
     },
     countByCat: () => {
