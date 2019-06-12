@@ -1,0 +1,33 @@
+<div class="card shadow">
+    <h1 class="card-header">
+        Categories
+    </h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Category Name</th>
+                <th scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/categories/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add Category
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.categories}}
+            <tr>
+                <th class="text-center" scope="row">{{CatID}}</th>
+                <td>{{CatName}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary btn-sm" href="/admin/categories/edit/{{CatID}}" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

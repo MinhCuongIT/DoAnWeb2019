@@ -1,0 +1,234 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <div
+                    style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                    <a style="color: white" href="#">Kinh doanh</a>
+                </div>
+                <div class="bd-example">
+                    <div id="carouselKinhDoanh" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselKinhDoanh" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselKinhDoanh" data-slide-to="1"></li>
+                            <li data-target="#carouselKinhDoanh" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m1}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4; vertical-align: middle;" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselKinhDoanh" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselKinhDoanh" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div
+                    style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                    <a style="color: white" href="#">Thị trường</a>
+                </div>
+                <div class="bd-example">
+                    <div id="carouselThiTruong" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselThiTruong" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselThiTruong" data-slide-to="1"></li>
+                            <li data-target="#carouselThiTruong" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m2}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselThiTruong" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselThiTruong" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="bd-example">
+                    <div
+                        style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                        <a style="color: white" href="#">Sức khỏe</a> </div>
+                    <div id="carouselSucKhoe" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselSucKhoe" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselSucKhoe" data-slide-to="1"></li>
+                            <li data-target="#carouselSucKhoe" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m3}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselSucKhoe" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselSucKhoe" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div
+                    style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                    <a style="color: white" href="#">Công nghệ</a> </div>
+                <div class="bd-example">
+                    <div id="carouselCongNghe" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselCongNghe" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselCongNghe" data-slide-to="1"></li>
+                            <li data-target="#carouselCongNghe" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m4}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselCongNghe" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselCongNghe" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="bd-example">
+                    <div
+                        style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                        <a style="color: white" href="#">Thế giới</a> </div>
+                    <div id="carouselTheGioi" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselTheGioi" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselTheGioi" data-slide-to="1"></li>
+                            <li data-target="#carouselTheGioi" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m5}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselTheGioi" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselTheGioi" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div
+                    style="background-color: #005073; display: inline-block; padding: 0.3rem 2rem; color: white; font-weight: bold; border-radius: 0 20rem 0 0; margin: 0.5rem 0; font-size: 12px;">
+                    <a style="color: white" href="#">Thể thao</a> </div>
+                <div class="bd-example">
+                    <div id="carouselTheThao" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselTheThao" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselTheThao" data-slide-to="1"></li>
+                            <li data-target="#carouselTheThao" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {{#each m6}}
+                            <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
+                                class="carousel-item {{#if active}}active{{/if}}">
+                                <a style="text-decoration: none; color: inherit" href="javascript:;">
+                                    <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
+                                        alt="{{title}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>{{title}}</h6>
+                                        <p>{{mySubString2 content}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselTheThao" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselTheThao" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

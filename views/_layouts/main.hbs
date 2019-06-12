@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tin tức 24h | Tin mới</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="/logo.png" style="border-radius: 50%" />
+    {{{_sections.css}}}
+</head>
+
+<body>
+
+    <nav style="padding: 0rem 1rem" class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
+        <a class="navbar-brand" href="/">
+            <img style="border-radius: 50%" src="/logo.png" alt="" width="50" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {{#each lcCategories}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{CatName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{#each childs}}
+                        <a class="dropdown-item" href="#">{{CatName}}</a>
+                        {{/each}}
+                    </div>
+                </li>
+                {{/each}}
+
+            </ul>
+
+            <form id="frmSignout" action="/account/logout" method="POST"></form>
+            <ul class="navbar-nav">
+                {{#if isAuthenticated}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hi, <b>{{authUser.name}}</b>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/account/profile">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript: $('#frmSignout').submit();">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Sign Out
+                        </a>
+                    </div>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/account/register">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account/login">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Sign In
+                    </a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <b style="color: red">Top bài đọc nhiều nhất</b>
+                    </div>
+                    <div class="card-body p-0">
+                        {{#each lcTop10Vew}}
+                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                            <div class="card mb-2 shadow">
+                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
+                                <div style="padding: 0.25rem" class="card-body">
+                                    <h6 class="card-title">{{title}}</h6>
+                                    <p style="font-size: 12px" class="font-italic">
+                                        {{myDatetime date}}
+                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+                                        {{views}}
+                                    </p>
+                                    <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
+                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                </div>
+                                
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-8">
+                {{{body}}}
+            </div>
+            <div class="col-sm-2 ">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <b style="color: red">Top bài viết mới nhất</b>
+                    </div>
+                    <div class="card-body p-0">
+                        {{#each lcTop10New}}
+                            
+                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                            <div class="card mb-2 shadow">
+                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
+                                <div style="padding: 0.25rem" class="card-body">
+                                    <h6 class="card-title">{{title}}</h6>
+                                    <p style="font-size: 12px" class="font-italic">
+                                        {{myDatetime date}}
+                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+                                        {{views}}
+                                    </p>
+                                    <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
+                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                </div>
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img style="border-radius: 50%" class="mb-2" src="/logo.png" alt="" width="40" height="40">
+                    <small class="d-block mb-3 text-muted">© 2018-2019</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Trang báo điện tử</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Thể hiện tin tức mới nhất</a></li>
+                        <li><a class="text-muted" href="#">Theo từng chuyên mục</a></li>
+                        <li><a class="text-muted" href="#">Nhanh - kịp thời</a></li>
+                        <li><a class="text-muted" href="#">Đáp ứng tốt nhu cầu của đọc giả</a></li>
+                        <li><a class="text-muted" href="#">Phân trang theo chuyên mục</a></li>
+                        <li><a class="text-muted" href="#">Gắn nhãn cho từng chuyên mục</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Thông tin đồ án</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Đồ án môn học</a></li>
+                        <li><a class="text-muted" href="#">Phát triển ứng dụng web</a></li>
+                        <li><a class="text-muted" href="#">TH2016-3</a></li>
+                        <li><a class="text-muted" href="#">2018-2019</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Về chúng tôi</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Trần Minh Cường</a></li>
+                        <li>
+                            <a href="https://www.facebook.com/MinhcuongIT97">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li><a class="text-muted" href="#">Nguyễn Thị Ngọc</a></li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100013558210615">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {{{_sections.js}}}
+</body>
+
+</html>
