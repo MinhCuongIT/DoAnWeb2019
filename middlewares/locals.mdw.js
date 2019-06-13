@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
             if (rows1.length > 0) {
                 menu = rows1.filter(x => x.CatFather == 0);
                 for (const item of menu) {
-                    var childrenMenu = rows1.filter(x => x.CatFather == item.id);
+                    var childrenMenu = rows1.filter(x => x.CatFather == item.CatID);
                     item['childs'] = childrenMenu;
                 }
             }

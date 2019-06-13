@@ -33,7 +33,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{#each childs}}
-                        <a class="dropdown-item" href="/categories/{{id}}">{{CatName}}</a>
+                        <a class="dropdown-item" href="/categories/{{CatID}}">{{CatName}}</a>
                         {{/each}}
                     </div>
                 </li>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="card-body p-0">
                         {{#each lcTop10Vew}}
-                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
                             <div class="card mb-2 shadow">
                                 <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
                                 <div style="padding: 0.25rem" class="card-body">
@@ -121,7 +121,7 @@
                     <div class="card-body p-0">
                         {{#each lcTop10New}}
                             
-                        <a style="text-decoration: none; color: inherit" href="javascript:;">
+                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
                             <div class="card mb-2 shadow">
                                 <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
                                 <div style="padding: 0.25rem" class="card-body">
@@ -132,7 +132,7 @@
                                         {{views}}
                                     </p>
                                     <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
                                 </div>
                             </div>
                         </a>
