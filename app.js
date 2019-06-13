@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
         page = 1
     }
 
-    var limit = 9
+    var limit = 7
     var offset = (page - 1) * limit
 
     console.log('====================================');
@@ -85,7 +85,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/account', require('./routes/account.route'))
-// app.use('/categories', require('./routes/category.route'))
+app.use('/categories', require('./routes/category.route'))
 // app.use('/admin/categories', require('./routes/admin/category.route'))
 
 app.use((req, res, next) => {

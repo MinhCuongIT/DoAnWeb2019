@@ -88,7 +88,8 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/profile', auth, (req, res, next) => {
-    res.end('Profile page')
+    console.log(res.locals.authUser.dob)
+    res.render('vwAccount/profile',)
 })
 
 router.post('/logout', auth, (req, res, next) => {

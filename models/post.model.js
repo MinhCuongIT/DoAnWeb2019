@@ -18,6 +18,17 @@ module.exports = {
     countByCat: () => {
         return db.load(`select count(*) as total from post`);
     },
+    pageByCatWithID: (CatID, limit, offset) => {
+        return db.load(`
+        select *
+        from post p left join categories c on p.tagId = c.id
+        where p.tagId = ${CatID}
+        limit ${limit} offset ${offset}
+        `);
+    },
+    countByCatWithID: (CatID) => {
+        return db.load(`select count(*) as total from post p where p.tagId = ${CatID}`);
+    },
     single: id => {
         return db.load(`select * from post where id = ${id}`);
     },

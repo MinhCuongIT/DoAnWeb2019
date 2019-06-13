@@ -33,7 +33,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{#each childs}}
-                        <a class="dropdown-item" href="#">{{CatName}}</a>
+                        <a class="dropdown-item" href="/categories/{{id}}">{{CatName}}</a>
                         {{/each}}
                     </div>
                 </li>
@@ -65,13 +65,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/account/register">
                         <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        Register
+                        <b>Register</b>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/account/login">
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        Sign In
+                        <b>Sign In</b>
                     </a>
                 </li>
                 {{/if}}
@@ -99,7 +99,7 @@
                                         {{views}}
                                     </p>
                                     <p style="font-size: 13px" class="card-text">{{mySubString content}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="javascript:;" role="button">{{CatName}}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
                                 </div>
                                 
                             </div>

@@ -15,15 +15,15 @@ router.get('/:id', (req, res, next) => {
         page = 1
     }
 
-    var limit = 6
+    var limit = 10
     var offset = (page - 1) * limit
     if (isNaN(id)) {
         throw new Error('Id is not a number!')
     }
     else {
         Promise.all([
-            productModel.pageByCat(id, limit, offset),
-            productModel.countByCat(id),
+            productModel.pageByCatWithID(id, limit, offset),
+            productModel.countByCatWithID(id),
         ])
             .then(([rows, count_rows]) => {
                 
@@ -45,8 +45,8 @@ router.get('/:id', (req, res, next) => {
                         active: i === +page
                     })
                 }
-
                 res.render('vwProducts/byCat', {
+                    danhMuc: rows[0].CatName,
                     products: rows,
                     pages
                 })
