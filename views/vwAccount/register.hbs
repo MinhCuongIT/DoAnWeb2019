@@ -1,17 +1,18 @@
-
 {{#section 'css'}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 {{/section}}
 
 
 {{#section 'js'}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script>
-    $(function(){
+    $(function () {
         $('#txtDOB').datetimepicker({
-            format:'d/m/Y',
-            timepicker:false,
-            mask:true
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true
         });
     })
 </script>
@@ -38,9 +39,9 @@
             </div>
 
             <hr class="mb-4">
-            <h5 class="mb-3">Information</h5>
+            <h5 class="mb-3">Thông tin đăng kí</h5>
             <div class="form-group">
-                <label for="txtName">Name</label>
+                <label for="txtName">Tên</label>
                 <input required type="text" class="form-control" id="txtName" name="name">
             </div>
             <div class="form-group">
@@ -48,14 +49,40 @@
                 <input required type="text" class="form-control" id="txtEmail" name="email">
             </div>
             <div class="form-group">
-                <label for="txtDOB">Date of birth</label>
+                <label for="txtDOB">Ngày sinh</label>
                 <input required type="text" class="form-control" id="txtDOB" name="dob">
+            </div>
+            <div class="form-group">
+                <label for="txtDOB">Loại tài khoản:</label>
+                <div class="form-control">
+                    <form action="">
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio1">
+                                <input type="radio" class="form-check-input" id="radio1" name="rbLoai"
+                                    value="Subscriber" checked>Subscriber
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" id="radio2" name="rbLoai"
+                                    value="Writer">Writer
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio3">
+                                <input type="radio" class="form-check-input" id="radio3" name="rbLoai"
+                                    value="Editor">Editor
+                            </label>
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
         <div class="card-footer text-right">
             <button type="submit" class="btn btn-lg btn-success btn-block">
                 <i class="fa fa-check" aria-hidden="true"></i>
-                Register
+                Đăng kí
             </button>
         </div>
     </div>

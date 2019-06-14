@@ -27,10 +27,6 @@ app.get('/', (req, res) => {
 
     var limit = 7
     var offset = (page - 1) * limit
-
-    console.log('====================================');
-    console.log(`offset: ${offset}, limit: ${limit}`);
-    console.log('====================================');
     Promise.all([
         categoryModel.mainCarousel(1),
         categoryModel.mainCarousel(2),

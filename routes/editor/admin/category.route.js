@@ -5,6 +5,8 @@ var categoryModel = require('../../models/category.model');
 
 router.get('/', (req, res) => {
     categoryModel.all().then(rows => {
+        // console.log(rows)
+        // res.json(rows)
         res.render('admin/vwCategories/index', {
             categories: rows
         })

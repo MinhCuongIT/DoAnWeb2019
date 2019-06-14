@@ -33,7 +33,7 @@ router.post('/register', (req, res, next) => {
             email: req.body.email,
             name: req.body.name,
             dob: dob,
-            type: 0
+            type: req.body.rbLoai
         }
         userModel.add(entity).then(id => {
             res.redirect('/account/login')
@@ -91,6 +91,26 @@ router.get('/profile', auth, (req, res, next) => {
     console.log(res.locals.authUser.dob)
     res.render('vwAccount/profile',)
 })
+router.get('/dashboard', auth, (req, res, next) => {
+    switch (res.locals.authUser.type) {
+        case 'Admin':
+            res.render('admin/index')
+            break;
+        case 'Writer':
+            res.render('writer/index')
+            break;
+        case 'Editor':
+            res.render('editor/index')
+            break;
+        case 'Subscriber':
+            res.render('subscriber/index')
+            break;
+    
+        default:
+            break;
+    }
+})
+
 
 router.post('/logout', auth, (req, res, next) => {
     req.logOut()
