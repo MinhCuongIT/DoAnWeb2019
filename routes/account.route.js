@@ -48,16 +48,16 @@ router.post('/register', (req, res, next) => {
 
 })
 
-//for dev
-router.get('/delete/:username', (req, res, next) => {
-    var username = req.params.username
-    userModel.delete(username).then(n => {
-        res.redirect('/account')
-    }).catch(err => {
-        console.log(err)
-        next()
-    })
-})
+// //for dev
+// router.get('/delete/:username', (req, res, next) => {
+//     var username = req.params.username
+//     userModel.delete(username).then(n => {
+//         res.redirect('/account')
+//     }).catch(err => {
+//         console.log(err)
+//         next()
+//     })
+// })
 
 router.get('/login', (req, res, next) => {
     res.render('vwAccount/login', {
@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/profile', auth, (req, res, next) => {
-    console.log(res.locals.authUser.dob)
+    // console.log(res.locals.authUser.dob)
     res.render('vwAccount/profile',)
 })
 router.get('/dashboard', auth, (req, res, next) => {

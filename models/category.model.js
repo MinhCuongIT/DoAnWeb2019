@@ -9,7 +9,7 @@ module.exports = {
         return db.load("select * from categories where CatFather = 0");
     },
     single: id => {
-        return db.load(`select * from post where CatID = ${id}`);
+        return db.load(`select * from categories where CatID = ${id}`);
     },
     topNewest: () => {
         return db.load(`
