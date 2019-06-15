@@ -20,6 +20,9 @@ module.exports = function (app) {
             myDatetime: date =>{
                 return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
             },
+            myDatetime2: date => {
+                return moment(date).format(' - DD/MM/YYYY HH:mm');
+            },
             section: hbs_section(),
         }
     }))

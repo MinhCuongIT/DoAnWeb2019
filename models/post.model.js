@@ -34,6 +34,11 @@ module.exports = {
                         FROM post p left join categories c on p.tagId = c.CatID
                         WHERE p.PostID = ${id}`);
     },
+    commentByPostID : PostId => {
+        return db.load(`SELECT *
+                        FROM comments
+                        WHERE PostID = ${PostId}`);
+    },
     add: entity => {
         return db.add('post', entity)
     },
