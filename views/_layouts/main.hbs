@@ -93,7 +93,7 @@
                     </div>
                     <div class="card-body p-0">
                         {{#each lcTop10Vew}}
-                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                             <div class="card mb-2 shadow">
                                 <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
                                 <div style="padding: 0.25rem" class="card-body">
@@ -126,7 +126,7 @@
                     <div class="card-body p-0">
                         {{#each lcTop10New}}
                             
-                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                             <div class="card mb-2 shadow">
                                 <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
                                 <div style="padding: 0.25rem" class="card-body">

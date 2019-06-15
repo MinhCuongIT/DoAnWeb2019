@@ -17,7 +17,7 @@
                             {{#each m1}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4; vertical-align: middle;" src="{{image_link}}"
                                         class="d-block w-100" alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -55,7 +55,7 @@
                             {{#each m2}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
                                         alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -94,7 +94,7 @@
                             {{#each m3}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
                                         alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -131,7 +131,7 @@
                             {{#each m4}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
                                         alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -170,7 +170,7 @@
                             {{#each m5}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
                                         alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -207,7 +207,7 @@
                             {{#each m6}}
                             <div style="background-image: -webkit-linear-gradient(white 30%, black 70%)"
                                 class="carousel-item {{#if active}}active{{/if}}">
-                                <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                                <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                                     <img style="opacity: 0.4" src="{{image_link}}" class="d-block w-100"
                                         alt="{{title}}">
                                     <div class="carousel-caption d-none d-md-block">
@@ -241,7 +241,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                             <h6 class="card-title">{{title}}</h6>
                             <p style="font-size: 12px" class="font-italic">
                                 {{myDatetime date}}
@@ -272,7 +272,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a style="text-decoration: none; color: inherit" href="/post/{{PostID}}">
+                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                             <h6 class="card-title">{{title}}</h6>
                             <p style="font-size: 12px" class="font-italic">
                                 {{myDatetime date}}
@@ -287,6 +287,8 @@
             </div>
         </div>
         {{/each}}
+
+
         <div class="row">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">

@@ -4,24 +4,27 @@ var router = express.Router();
 var postModel = require('../models/post.model');
 var commentModel = require('../models/comment.model')
 
-router.get('/:id', (req, res, next) => {
+router.get('/', (req, res, next) => {
 
 
     // throw new Error('This is an error for test!')
 
-    var id = req.params.id
-    if (isNaN(id)) {
+    var catId = req.query.cat
+    var postId = req.query.post
+    if (isNaN(postId)) {
         throw new Error('Id is not a number!')
     }
     Promise.all([
-        postModel.single(id),
-        postModel.commentByPostID(id)
+        postModel.single(postId),
+        postModel.commentByPostID(postId),
+        postModel.postCungChuyenMuc(catId, postId)
     ])
-        .then(([rows, comments]) => {
+        .then(([rows, comments, cungchuyenmuc]) => {
             res.render('vwProducts/viewDetail', {
                 danhMuc: rows[0].CatName,
                 post: rows[0],
-                comments
+                comments,
+                cungchuyenmuc
             })
         })
         .catch(err => {
@@ -30,22 +33,25 @@ router.get('/:id', (req, res, next) => {
         })
 })
 
-router.post('/:id', (req, res, next) => {
-    var idPost = req.params.id;
+router.post('/', (req, res, next) => {
+    
+    var catId = req.query.cat
+    var postId = req.query.post
+
     var name = req.body.commenter
     var content = req.body.content
     var today = new Date();
     var datePost = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
     var comment = {
-        PostID: idPost,
+        PostID: postId,
         date: datePost,
         commenter: name,
         content: content,
     }
     commentModel.add(comment)
-        .then(id =>{
-            res.render(`/post/${idPost}`)
+        .then(id => {
+            res.redirect(`/post?cat=${catId}&post=${postId}`)
         })
         .catch(err => {
             console.log(err)
