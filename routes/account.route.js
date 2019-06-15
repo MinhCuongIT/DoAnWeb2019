@@ -99,19 +99,13 @@ router.get('/dashboard', auth, (req, res, next) => {
                 })
             break;
         case 'Writer':
-            res.render('writer/index',{
-                layout: 'main_2.hbs'
-            })
+            res.redirect('/writer')
             break;
         case 'Editor':
-            res.render('editor/index',{
-                layout: 'main_2.hbs'
-            })
+            res.redirect('/editor')
             break;
         case 'Subscriber':
-            res.render('subscriber/index',{
-                layout: 'main_2.hbs'
-            })
+            res.redirect('/subscriber')
             break;
 
         default:

@@ -85,6 +85,8 @@ app.use('/categories', require('./routes/category.route'))
 app.use('/post', require('./routes/post.route'))
 app.use('/admin', require('./routes/admin/admin.route'))
 app.use('/writer', require('./routes/writer/writer.route'))
+app.use('/editor', require('./routes/editor/editor.route'))
+app.use('/subscriber', require('./routes/subscriber/subscriber.route'))
 
 app.use((req, res, next) => {
     res.render('404', {

@@ -22,6 +22,7 @@ router.get('/', auth, (req, res) => {
         })
 
 })
+
 router.post('/', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Writer') {
         throw new Error('You do not have permission to access this link')
@@ -32,6 +33,7 @@ router.post('/', auth, (req, res) => {
             var entity = {
                 image_link: req.body.image_link,
                 title: req.body.title,
+                moTaNgan:req.body.moTaNgan,
                 catId: rows[0].CatFather,
                 tagId: req.body.selectCatID,
                 date: idate,
@@ -51,6 +53,24 @@ router.post('/', auth, (req, res) => {
             console.log(err)
             next()
         })
+})
+
+router.get('/viewpost', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Writer') {
+        throw new Error('You do not have permission to access this link')
+    }
+    postModel.allByWriter(res.locals.authUser.id)
+        .then(rows => {
+            res.render('writer/viewPost', {
+                layout: 'main_2.hbs',
+                listPost: rows
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            next()
+        })
+
 })
 
 module.exports = router;

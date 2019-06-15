@@ -8,6 +8,13 @@ module.exports = {
     allByCat: catId => {
         return db.load(`select * from post where catId = ${catId}`);
     },
+    allByWriter: writerId => {
+        return db.load(`
+        select * 
+        from post p left join categories c on p.tagId = c.CatID
+        where p.writerId = ${writerId}
+        `);
+    },
     pageByCat: (limit, offset) => {
         return db.load(`
         select *
