@@ -1,0 +1,41 @@
+<div class="card shadow">
+    <h1 class="card-header">
+        Quản lý người dùng
+    </h1>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Tên người dùng</th>
+                 <th scope="col">Họ tên</th>
+                  <th scope="col">Phân hệ</th>
+                   <th scope="col">Trạng thái</th>
+                <th scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/account/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.accountManage}}
+            <tr>
+                <th class="text-center" scope="row">{{id}}</th>
+                <td>{{username}}</td>
+                 <td>{{name}}</td>
+                  <td>{{type}}</td>
+                   <td > {{{TrangThai this.trangThai}}}</td>
+                <td class="text-right">
+                     
+                    <a class="btn btn-primary btn-sm" href="/admin/categories/edit/{{id}}" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
