@@ -85,70 +85,8 @@
     </nav>
 
     <div class="container-fluid mt-4">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <b style="color: red">Top bài đọc nhiều nhất</b>
-                    </div>
-                    <div class="card-body p-0">
-                        {{#each lcTop10Vew}}
-                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
-                            <div class="card mb-2 shadow">
-                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
-                                <div style="padding: 0.25rem" class="card-body">
-                                    <h6 class="card-title">{{title}}</h6>
-                                    <p style="font-size: 12px" class="font-italic">
-                                        {{myDatetime date}}
-                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
-                                        {{views}}
-                                    </p>
-                                    <p style="font-size: 13px" class="card-text">{{mySubString moTaNgan}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
-                                </div>
-                                
-                            </div>
-                        </a>
-                        {{/each}}
-                    </div>
 
-
-                </div>
-            </div>
-            <div class="col-sm-8">
-                {{{body}}}
-            </div>
-            <div class="col-sm-2 ">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <b style="color: red">Top bài viết mới nhất</b>
-                    </div>
-                    <div class="card-body p-0">
-                        {{#each lcTop10New}}
-                            
-                        <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
-                            <div class="card mb-2 shadow">
-                                <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
-                                <div style="padding: 0.25rem" class="card-body">
-                                    <h6 class="card-title">{{title}}</h6>
-                                    <p style="font-size: 12px" class="font-italic">
-                                        {{myDatetime date}}
-                                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
-                                        {{views}}
-                                    </p>
-                                    <p style="font-size: 13px" class="card-text">{{mySubString moTaNgan}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
-                                </div>
-                            </div>
-                        </a>
-                        {{/each}}
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
+        {{{body}}}
 
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">

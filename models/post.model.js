@@ -34,6 +34,11 @@ module.exports = {
                         FROM post p left join categories c on p.tagId = c.CatID
                         WHERE p.PostID = ${id}`);
     },
+    fatherByCat: id => {
+        return db.load(`select *
+                        from categories 
+                        where CatID = ${id}`);
+    },
     postCungChuyenMuc: (CatID, PostID) => {
         return db.load(`SELECT *
                         FROM post p left join categories c on p.tagID = c.CatID

@@ -1,1 +1,86 @@
-<h1>Trang dash board writer</h1>
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ozo95m0tdkw464i0zl80x0l2c1gpk7jc532vrnsuyxbbev6s"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: '#txtFullDes',
+            height: 600,
+            menubar: false,
+            plugins: 'paste image link autolink lists table media',
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+                'forecolor backcolor',
+                'table link image media',
+            ],
+        });
+    })
+</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(function () {
+        $('#txtNgayDang').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true
+        });
+    })
+</script>
+{{/section}}
+
+<div class="row w-100 m-3" style="justify-content: center">
+    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer" role="button">Đăng bài viết</a>
+    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="#" role="button">Xem danh sách bài viết</a>
+    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="#" role="button">Hiệu chỉnh bài viết</a>
+</div>
+<form method="POST">
+    <div class="card shadow">
+        <h4 class="card-header">
+            Soạn thảo bài viết
+        </h4>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="txtTitle">Tiêu đề bài viết:</label>
+                <input required type="text" class="form-control" id="txtTitle" name="title">
+            </div>
+            <div class="form-group">
+                <label for="txtImageLink">Đường dẫn tiêu đề hình ảnh:</label>
+                <input required type="text" class="form-control" id="txtImageLink" name="image_link">
+            </div>
+
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Chuyên mục</label>
+                </div>
+                <select required class="custom-select" id="inputGroupSelect01" name="selectCatID">
+                    <option selected>Chọn...</option>
+                    {{#each listCat}}
+                    <option value="{{CatID}}">{{CatName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="txtNgayDang">Ngày đăng:</label>
+                <input required type="text" class="form-control" id="txtNgayDang" name="date">
+            </div>
+            <div class="form-group mt-3">
+                <label for="txtFullDes">Nội dung:</label>
+                <textarea class="form-control" id="txtFullDes" name="txtContent"></textarea>
+            </div>
+        </div>
+
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-lg btn-success btn-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Submit
+            </button>
+        </div>
+    </div>
+</form>

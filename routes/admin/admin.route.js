@@ -6,16 +6,20 @@ var auth = require('../../middlewares/auth')
 var categoryModel = require('../../models/category.model');
 
 // ============ Màn hình chủ ============ //
-router.get('/', auth, (req, res) => {
-    res.end('Man hinh chu cua admin')
-})
+// router.get('/', auth, (req, res) => {
+//     res.end('Man hinh chu cua admin')
+// })
 
 // ============ Quản lý danh mục ============ //
 
 router.get('/categories/', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     categoryModel.allParent().then(rows => {
         res.render('admin/vwCategories/index', {
-            categories: rows
+            categories: rows,
+            layout: 'main_2.hbs'
         })
     }).catch(err => {
         console.log(err)
@@ -23,11 +27,14 @@ router.get('/categories/', auth, (req, res) => {
 })
 
 router.get('/categories/edit/:id', auth, (req, res) => {
-
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     var id = req.params.id
     if (isNaN(id)) {
         res.render('admin/vwCategories/edit', {
             error: true,
+            layout: 'main_2.hbs'
         })
     }
     else {
@@ -37,12 +44,14 @@ router.get('/categories/edit/:id', auth, (req, res) => {
                 if (rows.length > 0) {
                     res.render('admin/vwCategories/edit', {
                         error: false,
-                        category: rows[0]
+                        category: rows[0],
+                        layout: 'main_2.hbs'
                     })
                 }
                 else {
                     res.render('admin/vwCategories/edit', {
                         error: true,
+                        layout: 'main_2.hbs'
                     })
                 }
             })
@@ -55,11 +64,19 @@ router.get('/categories/edit/:id', auth, (req, res) => {
 })
 
 router.get('/categories/add', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     // res.end("Add new category")
-    res.render('admin/vwCategories/add')
+    res.render('admin/vwCategories/add',{
+        layout: 'main_2.hbs'
+    })
 })
 
 router.post('/categories/add', (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     // console.log(req.body)
     // res.end('...')
 
@@ -77,6 +94,9 @@ router.post('/categories/add', (req, res) => {
 })
 
 router.post('/categories/update', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     categoryModel.update(req.body)
         .then(n => {
             res.redirect('/admin/categories')
@@ -87,6 +107,9 @@ router.post('/categories/update', auth, (req, res) => {
 })
 
 router.post('/categories/delete', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     categoryModel.delete(req.body.CatID)
         .then(n => {
             res.redirect('/admin/categories')

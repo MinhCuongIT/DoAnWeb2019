@@ -12,12 +12,16 @@ module.exports = function (app) {
                 return numeral(val).format('0,0') + '₫';
             },
             mySubString: str => {
-                return str.substr(0, 125) + "...";
+                if (str !== null) {
+                    return str.substr(0, 125) + "...";
+                }
             },
             mySubString2: str => {
-                return str.substr(0, 55) + "...";
+                if (str !== null) {
+                    return str.substr(0, 55) + "...";
+                }
             },
-            myDatetime: date =>{
+            myDatetime: date => {
                 return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
             },
             myDatetime2: date => {
