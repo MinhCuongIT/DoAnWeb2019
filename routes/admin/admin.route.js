@@ -125,12 +125,12 @@ router.get('/accountManage', auth, (req, res) => {
         console.log(err)
     })
 })
-router.get('/accountManage/add', (req, res) => { 
+router.get('/accountManage/GiaHan', (req, res) => { 
     
-    accountManageModel.all().then(rows => {
+    accountManageModel.allSubscriber().then(rows => {
         console.log(rows)
        // res.json(rows)
-       res.render('admin/vwaccountManage/add', {
+       res.render('admin/vwaccountManage/GiaHan', {
         accountManage: rows
        })
    }).catch(err => {
@@ -171,9 +171,9 @@ router.get('/accountManage/edit/:id', auth, (req, res) => {
 
 })
 
-router.get('/accountManage/add', auth, (req, res) => {
+router.get('/accountManage/GiaHan', auth, (req, res) => {
     // res.end("Add new category")
-    res.render('admin/vwaccountManage/add')
+    res.render('admin/vwaccountManage/GiaHan')
 })
 
 // router.post('/accountManage/add', (req, res) => {
@@ -218,18 +218,18 @@ router.post('/accountManage/delete', auth, (req, res) => {
  
  Handlebars.registerHelper("TrangThai", function(currentValue){
      if(currentValue == '1'){
-         return "Active"
+         return "Block"
      }
      else
      {
-         return "Block"
+         return "Active"
      }
  })
  Handlebars.registerHelper("Mau", function(currentValue){
      if(currentValue =='1'){
-         return "alert-danger"
+         return "red"
      }else{
-        return "alert-success"
+        return "green"
      }
      
  })
@@ -240,4 +240,11 @@ router.post('/accountManage/delete', auth, (req, res) => {
        return "alert-success"
     }
  })
+ Handlebars.registerHelper("LoaiTaiKhoan", function(currentValue){
+    if(currentValue == '1'){
+        return "Quản lí";
+    } else{
+        return "Nhân viên"
+    }
+})
 module.exports = router;

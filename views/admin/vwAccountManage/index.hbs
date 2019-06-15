@@ -2,7 +2,26 @@
     <h1 class="card-header">
         Quản lý người dùng
     </h1>
-    
+    <div class="card-header" style="float: right">
+         <span   scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/account/GiaHan" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Phân công chuyên mục
+                    </a>
+                </span>
+        <span  style="margin-right:30px" scope="col" class="text-right ">
+                    <a class="btn btn-outline-success" href="/admin/account/GiaHan" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Duyệt tài khoản
+                    </a>
+                </span >
+                <span style="margin-right:30px"  scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/accountManage/GiaHan" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Gia hạn tài khoản
+                    </a>
+                </span>
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -11,12 +30,7 @@
                  <th scope="col">Họ tên</th>
                   <th scope="col">Phân hệ</th>
                    <th scope="col">Trạng thái</th>
-                <th scope="col" class="text-right">
-                    <a class="btn btn-outline-success" href="/admin/account/add" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Thêm
-                    </a>
-                </th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +40,7 @@
                 <td>{{username}}</td>
                  <td>{{name}}</td>
                   <td>{{type}}</td>
-                   <td > {{{TrangThai this.trangThai}}}</td>
+                   <td style="color: {{{Mau this.trangThai}}}"> {{{TrangThai this.trangThai}}}</td>
                 <td class="text-right">
                      
                     <a class="btn btn-primary btn-sm" href="/admin/categories/edit/{{id}}" role="button">

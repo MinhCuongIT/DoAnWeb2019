@@ -1,0 +1,32 @@
+<div class="card shadow">
+    <h1 class="card-header">
+        Gia hạn tài khoản
+    </h1>
+   
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Tên người dùng</th>
+                 <th scope="col">Họ tên</th>
+                  <th scope="col">Ngày đăng kí</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.accountManage}}
+            <tr>
+                <th class="text-center" scope="row">{{id}}</th>
+                <td>{{username}}</td>
+                 <td>{{name}}</td>
+                  <td>{{date_register}}</td>
+                  
+                     
+                    
+                
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

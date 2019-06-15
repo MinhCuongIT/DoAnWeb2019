@@ -5,6 +5,9 @@ module.exports = {
     all: () => {
         return db.load("select * from users");
     },
+    allSubscriber: () => {
+        return db.load("select * from users where type = 'Subscriber'");
+    },
     single: username => {
         return db.load(`select * from users where username = ${username}`);
     },
@@ -13,8 +16,8 @@ module.exports = {
         return db.load(`select * from users where username = '${userName}'`);
     },
 
-    add: entity => {
-        return db.add('users', entity);
+    GianHan: entity => {
+        return db.GiaHan('users', entity);
     },
     update: entity => {
         return db.update('users', 'username', entity)
