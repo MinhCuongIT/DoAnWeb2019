@@ -13,6 +13,7 @@ router.get('/', auth, (req, res) => {
 // ============ Quản lý danh mục ============ //
 
 router.get('/categories/', auth, (req, res) => {
+    
     categoryModel.allParent().then(rows => {
         res.render('admin/vwCategories/index', {
             categories: rows
@@ -21,7 +22,20 @@ router.get('/categories/', auth, (req, res) => {
         console.log(err)
     })
 })
+router.get('/categories/add', (req, res) => { 
+    
+    categoryModel.allParent().then(rows => {
+        console.log(rows)
+       // res.json(rows)
+       res.render('admin/vwCategories/add', {
+           categories: rows
+       })
+   }).catch(err => {
+       console.log(err)
+   })
 
+   
+})
 router.get('/categories/edit/:id', auth, (req, res) => {
 
     var id = req.params.id
@@ -65,7 +79,8 @@ router.post('/categories/add', (req, res) => {
 
     categoryModel.add({
         CatName:req.body.CatName,
-        CatFather:0
+
+        CatFather:req.body.CatParent
     })
         .then(id => {
             console.log(`insertId: ${id}`)

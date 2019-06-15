@@ -4,9 +4,19 @@
     </div>
     <div class="card-body">
         <form method="POST">
+
             <div class="form-group">
-                <label for="CatName">Category Name</label>
-                <input autofocus type="text" class="form-control" id="CatName" name="CatName" placeholder="Enter Category Name">
+                <label for="CatName">Chuyên mục cha</label>
+                <select class="custom-select" name='CatParent'>
+                     <option value='0' selected>None</option>
+                      {{#each categories}}
+                    
+                    <option value={{CatID}}>{{CatName}}</option>
+                    {{/each}}
+                </select>
+                <br> </br>
+                <label for="CatName">Tên chuyên mục</label>
+                <input required autofocus type="text" class="form-control" id="CatName" name="CatName" placeholder="Enter Category Name">
             </div>
             <a class="btn btn-primary" href="/admin/categories" role="button">
             <i class="fa fa-backward" aria-hidden="true"></i>

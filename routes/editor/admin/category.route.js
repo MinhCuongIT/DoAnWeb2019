@@ -4,8 +4,9 @@ var router = express.Router();
 var categoryModel = require('../../models/category.model');
 
 router.get('/', (req, res) => {
+    console.log('haha')
     categoryModel.all().then(rows => {
-        // console.log(rows)
+         console.log(rows)
         // res.json(rows)
         res.render('admin/vwCategories/index', {
             categories: rows
@@ -47,9 +48,19 @@ router.get('/edit/:id', (req, res) => {
 
 })
 
-router.get('/add', (req, res) => {
-    // res.end("Add new category")
-    res.render('admin/vwCategories/add')
+router.get('/add', (req, res) => { 
+  
+    categoryModel.allParent().then(rows => {
+        console.log(rows)
+       // res.json(rows)
+       res.render('admin/vwCategories/add', {
+           categories: rows
+       })
+   }).catch(err => {
+       console.log(err)
+   })
+
+   
 })
 
 router.post('/add', (req, res) => {
