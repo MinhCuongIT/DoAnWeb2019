@@ -85,4 +85,72 @@ router.get('/viewpost', auth, (req, res) => {
 
 })
 
+router.get('/edit/:post', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Writer') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var idPost = req.params.post
+    console.log(`IDPOST la ${idPost}`)
+    categoryModel.allTag()
+        .then(rows => {
+            postModel.single(idPost)
+                .then(rowsPost => {
+                    console.log(rowsPost)
+                    rows.forEach(e => {
+                        if (e.CatID == rowsPost[0].CatID) {
+                            e.isSelected = true
+                        }
+                    });
+                    res.render('writer/edit', {
+                        layout: 'main_2.hbs',
+                        listCat: rows,
+                        info: rowsPost[0]
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+        })
+        .catch(err => {
+            console.log(err)
+            next()
+        })
+
+})
+
+router.post('/edit/:post', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Writer') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var idPost = req.params.post
+
+    categoryModel.single(req.body.selectCatID)
+        .then(rows => {
+            var idate = moment(req.body.date, 'DD/MM/YYYY').format('YYYY-MM-DD')
+            var entity = {
+                PostID: idPost,
+                image_link: req.body.image_link,
+                title: req.body.title,
+                moTaNgan: req.body.moTaNgan,
+                catId: rows[0].CatFather,
+                tagId: req.body.selectCatID,
+                date: idate,
+                content: req.body.txtContent,
+                views: 1,
+                writerId: res.locals.authUser.id,
+                trangThai: 'Chưa được duyệt'
+            }
+            postModel.update(entity)
+                .then(id => {
+                    res.redirect('/writer/viewpost')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }).catch(err => {
+            console.log(err)
+            next()
+        })
+})
 module.exports = router;
