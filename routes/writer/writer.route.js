@@ -40,11 +40,11 @@ router.post('/', auth, (req, res) => {
                 content: req.body.txtContent,
                 views: 78,
                 writerId: res.locals.authUser.id,
-                trangThai: 2
+                trangThai: 'Chờ xuất bản'
             }
             postModel.add(entity)
                 .then(id => {
-                    res.end('them thanh cong!')
+                    res.redirect('/writer/viewpost')
                 })
                 .catch(err => {
                     console.log(err)
