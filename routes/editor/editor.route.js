@@ -72,9 +72,6 @@ router.get('/viewmypost', auth, (req, res) => {
             if (e.trangThai == 'Đã được duyệt') {
                 e.showOk = true
             }
-            else{
-                e.showOk = false
-            }
         });
 
         res.render('editor/viewMyPost', {
