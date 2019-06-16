@@ -5,10 +5,21 @@ module.exports = {
     all: () => {
         return db.load("select * from users");
     },
+    allEditor: () => {
+        return db.load("select * from users where type = 'Editor'");
+    },
+    allSubscriber: () => {
+        return db.load("select * from users where type = 'Subscriber'");
+    },
+    renewal: (userId,date) => {
+        return db.load(`update users set date_update = '${date}' where UserID = ${userId}`);
+    },
     single: username => {
         return db.load(`select * from users where username = ${username}`);
     },
-
+    setRole: (userId, catId) => {
+        return db.load(`update users set CatID = ${catId} where UserID = ${userId}`);
+    },
     singleByUserName: userName => {
         return db.load(`select * from users where username = '${userName}'`);
     },

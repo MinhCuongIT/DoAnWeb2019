@@ -1,0 +1,30 @@
+<div class="card shadow">
+    <div class="card-header text-center">
+        <b>Gia hạn premium cho đọc giả</b>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="card shadow">
+                <div class="form-group text-center">
+                    <label>Chọn biên đọc giả:</label>
+                    <div class="input-group">
+                        <select style="margin: 0 10rem" required class="custom-select" id="inputGroupSelect01"
+                            name="selectUser">
+                            <option selected>Chọn...</option>
+                            {{#each users}}
+                            <option value="{{UserID}}">{{UserID}}-{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-right" style="margin: 0 10rem">
+                <button type="submit" class="btn btn-lg btn-success btn-block">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Xác nhận
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

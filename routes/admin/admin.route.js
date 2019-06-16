@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var postModel = require('../../models/post.model')
+var userModel = require('../../models/user.model')
 var auth = require('../../middlewares/auth')
-
+var moment = require('moment')
 var categoryModel = require('../../models/category.model');
 
 // ============ Màn hình chủ ============ //
@@ -152,4 +153,85 @@ router.post('/post/:post', auth, (req, res) => {
 })
 // ============ Quản lý Tài khoản ============ //
 
+// ============ Quản lý phân quyên cho editor ============ //
+router.get('/role', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    userModel.allEditor()
+        .then(rowsE => {
+            categoryModel.allTag()
+                .then(rowsT => {
+                    res.render('admin/vwAccounts/phanQuyen', {
+                        layout: 'main_2.hbs',
+                        users: rowsE,
+                        cats: rowsT
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+router.post('/role', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    if (isNaN(req.body.selectUser) || isNaN(req.body.selectCat)) {
+        res.render('admin/vwAccounts/fail', {
+            layout: 'main_2.hbs'
+        })
+    }
+    else {
+        userModel.setRole(req.body.selectUser, req.body.selectCat)
+            .then(id => {
+                res.render('admin/vwAccounts/success', {
+                    layout: 'main_2.hbs'
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+})
+// ============ Quản lý Gia Han ============ //
+router.get('/renewal', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    userModel.allSubscriber()
+        .then(rowsS => {
+            res.render('admin/vwAccounts/giaHan', {
+                layout: 'main_2.hbs',
+                users: rowsS,
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+router.post('/renewal', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    if (isNaN(req.body.selectUser)) {
+        res.render('admin/vwAccounts/giaHanFail', {
+            layout: 'main_2.hbs'
+        })
+    }
+    else {
+        var now = moment();
+        var to = moment().add(7, 'days');
+        userModel.renewal(req.body.selectUser, to.format('YYYY-MM-DD'))
+        .then(id=>{
+            res.render('admin/vwAccounts/giaHanSuccess', {
+                layout: 'main_2.hbs',
+                toDate: to.format('DD/MM/YYYY')
+            })
+        })
+    }
+})
 module.exports = router;
