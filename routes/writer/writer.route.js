@@ -33,14 +33,14 @@ router.post('/', auth, (req, res) => {
             var entity = {
                 image_link: req.body.image_link,
                 title: req.body.title,
-                moTaNgan:req.body.moTaNgan,
+                moTaNgan: req.body.moTaNgan,
                 catId: rows[0].CatFather,
                 tagId: req.body.selectCatID,
                 date: idate,
                 content: req.body.txtContent,
                 views: 78,
                 writerId: res.locals.authUser.id,
-                trangThai: 'Chờ xuất bản'
+                trangThai: 'Chưa được duyệt'
             }
             postModel.add(entity)
                 .then(id => {
@@ -59,8 +59,20 @@ router.get('/viewpost', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Writer') {
         throw new Error('You do not have permission to access this link')
     }
+    //kiểm tra bài viết từ chối hoặc chưa được duyệt thì mới được hiệu chỉnh
     postModel.allByWriter(res.locals.authUser.id)
         .then(rows => {
+            // for (const r in rows) {
+            //     console.log(r)
+            //     if (r.trangThai === 'Đã được duyệt' || r.trangThai === 'Bị từ chối') {
+            //         r.isActive = true;
+            //     }
+            // }
+            rows.forEach(e => {
+                if (e.trangThai == 'Chưa được duyệt' || e.trangThai == 'Bị từ chối') {
+                    e.active = true
+                }
+            });
             res.render('writer/viewPost', {
                 layout: 'main_2.hbs',
                 listPost: rows

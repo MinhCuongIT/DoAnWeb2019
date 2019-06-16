@@ -7,41 +7,45 @@
 {{/section}}
 
 <div class="row w-100 m-3" style="justify-content: center">
-    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer" role="button">Đăng bài viết</a>
-    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer/viewpost" role="button">Xem danh sách bài viết và hiệu chỉnh</a>
+    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer" role="button">Đăng bài
+        viết</a>
+    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer/viewpost" role="button">Xem
+        danh sách bài viết và hiệu chỉnh</a>
 </div>
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">#</th>
-                <th scope="col">Tiêu đề</th>
-                <th scope="col">Danh mục</th>
-                <th scope="col">Ngày</th>
-                <th scope="col">Mô tả ngắn</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col" class="text-right">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Hiệu chỉnh
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each this.listPost}}
-            <tr>
-                <th class="text-center" scope="row">{{PostID}}</th>
-                <td>{{title}}</td>
-                <td>{{CatName}}</td>
-                <td>{{myDatetime date}}</td>
-                <td>{{moTaNgan}}</td>
-                <td>{{trangThai}}</td>
-                <td class="text-right">
-                    <a class="btn btn-outline-success btn-sm" href="" role="button">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            {{/each}}
-    
-        </tbody>
-    </table>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">#</th>
+            <th scope="col">Tiêu đề</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Ngày</th>
+            <th scope="col">Mô tả ngắn</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col" class="text-right">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                Hiệu chỉnh
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.listPost}}
+        <tr>
+            <th class="text-center" scope="row">{{PostID}}</th>
+            <td>{{title}}</td>
+            <td>{{CatName}}</td>
+            <td>{{myDatetime date}}</td>
+            <td>{{moTaNgan}}</td>
+            <td>{{trangThai}}</td>
+            {{#if active}}
+            <td class="text-right">
+                <a class="btn btn-outline-success btn-sm" href="" role="button">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            </td>
+            {{/if}}
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
