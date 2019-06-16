@@ -8,6 +8,9 @@ module.exports = {
     allParent: () => {
         return db.load("select * from categories where CatFather = 0");
     },
+    allTag: () => {
+        return db.load("select * from categories where CatFather <> 0");
+    },
     single: id => {
         return db.load(`select * from categories where CatID = ${id}`);
     },

@@ -89,23 +89,25 @@ router.post('/login', (req, res, next) => {
 
 router.get('/profile', auth, (req, res, next) => {
     // console.log(res.locals.authUser.dob)
-    res.render('vwAccount/profile',)
+    res.render('vwAccount/profile')
 })
 router.get('/dashboard', auth, (req, res, next) => {
     switch (res.locals.authUser.type) {
         case 'Admin':
-            res.render('admin/index')
+            res.render('admin/index',{
+                layout:'main_2.hbs'
+                })
             break;
         case 'Writer':
-            res.render('writer/index')
+            res.redirect('/writer')
             break;
         case 'Editor':
-            res.render('editor/index')
+            res.redirect('/editor')
             break;
         case 'Subscriber':
-            res.render('subscriber/index')
+            res.redirect('/subscriber')
             break;
-    
+
         default:
             break;
     }

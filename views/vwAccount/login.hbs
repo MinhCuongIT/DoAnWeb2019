@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Express App</title>
+    <title>Đăng nhập hệ thống</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,7 +37,7 @@
     <div class="container-fluid h-100">
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-sm-4 col-md-3">
-                <h1 class="text-center mb-3" >Sign in</h1>
+                <h1 class="text-center mb-3" >Đăng nhập</h1>
                 {{#if err_message}}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -50,7 +50,7 @@
                 <form method="POST">
                     <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control form-control-lg border-right-0 border" placeholder="User name"
+                            <input class="form-control form-control-lg border-right-0 border" placeholder="Tên đăng nhập"
                                 type="text" name="username" autofocus>
                             <span class="input-group-append">
                                 <div class="input-group-text bg-white">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control form-control-lg border-right-0 border" placeholder="Password"
+                            <input class="form-control form-control-lg border-right-0 border" placeholder="Mật khẩu"
                                 type="password" name="password">
                             <span class="input-group-append">
                                 <div class="input-group-text bg-white">
@@ -74,13 +74,13 @@
                         <div>
                             <a class="btn btn-lg btn-outline-info btn-block" href="/" role="button">
                                 <i class="fa fa-home" aria-hidden="true"></i>
-                                Home
+                                Trang chủ
                             </a>
                         </div>
                         <div class="flex-fill ml-1">
                             <button class="btn btn-info btn-lg btn-block" type="submit">
                                 <i class="fa fa-sign-in" aria-hidden="true"></i>
-                                Sign In
+                                Đăng nhập
                             </button>
                         </div>
                     </div>

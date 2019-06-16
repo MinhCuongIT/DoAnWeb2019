@@ -7,9 +7,7 @@
 {{/section}}
 
 <div class="row w-100 m-3" style="justify-content: center">
-    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor" role="button">Danh sách bài viết Draft</a>
-    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor/viewmypost" role="button">Xem danh sách bài
-        viết</a>
+    <h4 style="margin: 0 3px" role="button">Xuất bản bài viết</h4>
 </div>
 
 <table class="table table-hover">
@@ -20,11 +18,11 @@
             <th style="width: 7rem" scope="col">Danh mục</th>
             <th scope="col">Ngày</th>
             <th scope="col">Mô tả ngắn</th>
-            <th style="width: 9rem" scope="col">Phóng viên</th>
+            <th style="width: 10rem" scope="col">Biên tập viên</th>
             <th style="width: 10rem" scope="col">Trạng thái</th>
-            <th style="width: 6rem" scope="col" class="text-right">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                Kiểm duyệt
+            <th style="width: 8rem" scope="col" class="text-right">
+                <i class="fa fa-newspaper" aria-hidden="true"></i>
+                Xuất bản
             </th>
         </tr>
     </thead>
@@ -39,18 +37,13 @@
                 <td>{{moTaNgan}}</td>
                 <td>{{name}}</td>
                 <td>{{trangThai}}</td>
-                {{#if active}}
                 <td class="text-right">
-                    <button type="submit" class="btn btn-outline-success btn-sm" formaction="/editor/accept/{{PostID}}">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </button>
-                    <button type="submit" class="btn btn-outline-danger btn-sm" formaction="/editor/decline/{{PostID}}">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                    <button type="submit" class="btn btn-outline-success btn-sm" formaction="/admin/post/{{PostID}}">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        Xuất bản
                     </button>
                 </td>
-                {{/if}}
-            </tr>
-            {{/each}}
+                {{/each}}
         </form>
 
     </tbody>
