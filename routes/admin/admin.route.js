@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Handlebars = require('handlebars')
 var auth = require('../../middlewares/auth')
+var moment = require('moment')
 
 var categoryModel = require('../../models/category.model');
 var accountManageModel = require('../../models/user.model');
@@ -128,7 +129,7 @@ router.get('/accountManage', auth, (req, res) => {
 router.get('/accountManage/GiaHan', (req, res) => { 
     
     accountManageModel.allSubscriber().then(rows => {
-        console.log(rows)
+      
        // res.json(rows)
        res.render('admin/vwaccountManage/GiaHan', {
         accountManage: rows
@@ -194,10 +195,29 @@ router.get('/accountManage/GiaHan', auth, (req, res) => {
 //         })
 // })
 
-router.post('/accountManage/update', auth, (req, res) => {
-    accountManageModel.update(req.body)
+// router.post('/accountManage/update', auth, (req, res) => {
+//     accountManageModel.update(req.body)
+//         .then(n => {
+//             res.redirect('/admin/accountManage')
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// })
+
+router.get('/accountManage/update/:id', auth, (req, res) => {
+    console.log(moment().format('YYYY-MM-DD'))
+    var entity={
+        id:req.params.id,
+        date_register:moment().format('YYYY-MM-DD')
+
+    }
+   
+    accountManageModel.update(entity)
+  
         .then(n => {
-            res.redirect('/admin/accountManage')
+            console.log(entity)
+            res.redirect('/admin/accountManage/GiaHan')
         })
         .catch(err => {
             console.log(err)
@@ -216,6 +236,34 @@ router.post('/accountManage/delete', auth, (req, res) => {
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Handlebars.registerHelper("Button", function(currentValue){
+    if(currentValue >0){
+        return "disabled"
+    }else{
+        return ""
+    }
+    
+})
+
+
  Handlebars.registerHelper("TrangThai", function(currentValue){
      if(currentValue == '1'){
          return "Block"
@@ -225,6 +273,15 @@ router.post('/accountManage/delete', auth, (req, res) => {
          return "Active"
      }
  })
+ Handlebars.registerHelper("Thoihan", function(currentValue){
+    if(currentValue <= 0){
+        return "Hết hạn"
+    }
+    else
+    {
+        return currentValue
+    }
+})
  Handlebars.registerHelper("Mau", function(currentValue){
      if(currentValue =='1'){
          return "red"

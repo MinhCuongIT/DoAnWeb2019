@@ -1,8 +1,8 @@
 <div class="card shadow">
     <h1 class="card-header">
-        Gia hạn tài khoản
+       Gia hạn tài khoản
     </h1>
-   
+  <form method="GET"  >
     <table class="table table-hover">
         <thead>
             <tr>
@@ -10,7 +10,8 @@
                 <th scope="col">Tên người dùng</th>
                  <th scope="col">Họ tên</th>
                   <th scope="col">Ngày đăng kí</th>
-               
+               <th>Số ngày còn lại</th>
+
             </tr>
         </thead>
         <tbody>
@@ -20,13 +21,22 @@
                 <td>{{username}}</td>
                  <td>{{name}}</td>
                   <td>{{date_register}}</td>
-                  
-                     
+                  <td ><b>{{Thoihan this.Date }}</b></td> 
+                  <td ><a role="button" class="btn btn-primary btn-sm {{{Button this.Date}}}" href="/admin/accountManage/update/{{id}}" role="button">Gia hạn</a></td>
+                    
                     
                 
             </tr>
             {{/each}}
 
         </tbody>
+        
     </table>
+    
+    </form>
+     
 </div>
+ <a class="btn btn-primary" href="/admin/accountManage" role="button">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+                List
+            </a>
