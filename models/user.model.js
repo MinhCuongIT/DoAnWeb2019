@@ -11,9 +11,11 @@ module.exports = {
     allEditor: () => {
         return db.load(`select * from users where type ='Editor'`);
     },
-    single: username => {
-        return db.load(`select * from users where username = ${username}`);
+
+    single: id => {
+        return db.load(`select * from users where UserID = ${id}`);
     },
+    
 
     singleByUserName: userName => {
         return db.load(`select * from users where username = '${userName}'`);

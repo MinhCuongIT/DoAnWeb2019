@@ -57,6 +57,7 @@ router.get('/categories/edit/:id', auth, (req, res) => {
         console.log(id)
         categoryModel.single(id)
             .then(rows => {
+                console.log(rows[0])
                 if (rows.length > 0) {
                     res.render('admin/vwCategories/edit', {
                         error: false,
@@ -196,7 +197,6 @@ router.get('/accountManage/GiaHan', (req, res) => {
 router.get('/accountManage/PhanCong', (req, res) => { 
     
     accountManageModel.allEditor().then(rows => {
-      console.log("haha");
        // res.json(rows)
        res.render('admin/vwaccountManage/PhanCong', {
         accountManage: rows
@@ -208,26 +208,30 @@ router.get('/accountManage/PhanCong', (req, res) => {
    
 })
 router.get('/accountManage/edit/:id', auth, (req, res) => {
-
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     var id = req.params.id
     if (isNaN(id)) {
-        res.render('admin/vwaccountManage/edit', {
+        res.render('admin/vwAccountManage/edit', {
             error: true,
+            layout: 'main_2.hbs'
         })
     }
     else {
-        console.log(id)
         accountManageModel.single(id)
             .then(rows => {
                 if (rows.length > 0) {
-                    res.render('admin/vwaccountManage/edit', {
+                    res.render('admin/vwAccountManage/edit', {
                         error: false,
-                        accountManage: rows[0]
+                        accountManage: rows[0],
+                        layout: 'main_2.hbs'
                     })
                 }
                 else {
-                    res.render('admin/vwaccountManage/edit', {
+                    res.render('admin/vwAccountManage/edit', {
                         error: true,
+                        layout: 'main_2.hbs'
                     })
                 }
             })
@@ -265,15 +269,15 @@ router.get('/accountManage/PhanCong', auth, (req, res) => {
 //         })
 // })
 
-// router.post('/accountManage/update', auth, (req, res) => {
-//     accountManageModel.update(req.body)
-//         .then(n => {
-//             res.redirect('/admin/accountManage')
-//         })
-//         .catch(err => {
-//             console.log(err)
-//         })
-// })
+router.post('/accountManage/update', auth, (req, res) => {
+    accountManageModel.update(req.body)
+        .then(n => {
+            res.redirect('/admin/accountManage')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 router.get('/accountManage/update/:id', auth, (req, res) => {
     console.log(moment().format('YYYY-MM-DD'))

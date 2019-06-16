@@ -1,29 +1,73 @@
 <div class="card shadow">
     <div class="card-header">
-        Edit Category
+        Chỉnh sửa tài khoản người dùng
     </div>
     <div class="card-body">
         {{#if this.error}}
         <div class="alert alert-danger" role="alert">
-            Invalid CategoryID. <a href="/admin/categories" class="alert-link">Go back</a>.
+            Invalid UserID. <a href="/admin/accountManage" class="alert-link">Go back</a>.
         </div>
         {{else}}
-        <form method="POST" action="/admin/categories/update">
-            <div class="form-group">
-                <label for="txtCatID">#</label>
-                <input readonly type="text" class="form-control" id="txtCatID" name="CatID"
-                    value="{{this.category.CatID}}">
+        <form method="POST" action="/admin/accountManage/update">
+        <div class="row">
+    <div class="col">
+        
+      <div class="form-group">
+                <label for="txtUserID"><b>#</b></label>
+                <input readonly type="text" class="form-control" id="txtUserID" name="UserID"
+                    value="{{this.accountManage.UserID}}">
+            </div>
+             <div class="form-group">
+                <label for="name"><b>Tên</b></label>
+                <input autofocus type="text" class="form-control" id="name" name="name"
+                    value="{{this.accountManage.name}}">
             </div>
             <div class="form-group">
-                <label for="CatName">Category Name</label>
-                <input autofocus type="text" class="form-control" id="CatName" name="CatName"
-                    placeholder="Enter Category Name" value="{{this.category.CatName}}">
+                <label for="email"><b>email</b></label>
+                <input  type="text" class="form-control" id="email" name="email"
+                    value="{{this.accountManage.email}}">
             </div>
-            <a class="btn btn-primary" href="/admin/categories" role="button">
+            <div class="form-group">
+                <label for="dob"><b>Ngày sinh</b></label>
+                <input  type="text" class="form-control" id="dob" name="dob"
+                    value="{{this.accountManage.dob}}">
+            </div>
+            
+
+    </div>
+    
+            
+             
+    <div class="col">
+     <div class="form-group">
+                <label for="username"><b>Tên tài khoản</b></label>
+                <input readonly type="text" class="form-control" id="username" name="username"
+                    value="{{this.accountManage.username}}">
+           
+    </div>
+    <div class="form-group">
+                <label for="type"><b>Loại</b></label>
+                <input  type="text" class="form-control" id="type" name="type"
+                    value="{{this.accountManage.type}}">
+            </div>
+            <div class="form-group">
+                <label for="status"><b>Trạng thái</b></label>
+                <input  type="text" class="form-control" id="status" name="status"
+                    value="{{this.accountManage.status}}">
+            </div>
+            <div class="form-group">
+                <label for="date_register"><b>Ngày đăng kí</b></label>
+                <input  type="text" class="form-control" id="date_register" name="date_register"
+                    value="{{this.accountManage.date_register}}">
+            </div>
+  </div>
+  </div>
+           
+            <a class="btn btn-primary" href="/admin/accountManage" role="button">
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
             </a>
-            <button type="submit" class="btn btn-danger" formaction="/admin/categories/delete">
+            <button type="submit" class="btn btn-danger" formaction="/admin/accountManage/delete">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                 Delete
             </button>
