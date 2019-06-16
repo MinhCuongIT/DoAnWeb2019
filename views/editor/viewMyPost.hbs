@@ -7,10 +7,8 @@
 {{/section}}
 
 <div class="row w-100 m-3" style="justify-content: center">
-    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer" role="button">Đăng bài
-        viết</a>
-    <a name="" id="" style="margin: 0 3px" class="btn btn-outline-success" href="/writer/viewpost" role="button">Xem
-        danh sách bài viết và hiệu chỉnh</a>
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor" role="button">Danh sách bài viết Draft</a>
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor/viewmypost" role="button">Xem danh sách bài viết</a>
 </div>
 
 <table class="table table-hover">
@@ -21,11 +19,8 @@
             <th scope="col">Danh mục</th>
             <th scope="col">Ngày</th>
             <th scope="col">Mô tả ngắn</th>
+            <th style="width: 9rem" scope="col">Phóng viên</th>
             <th style="width: 10rem" scope="col">Trạng thái</th>
-            <th style="width: 6rem" scope="col" class="text-right">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                Hiệu chỉnh
-            </th>
         </tr>
     </thead>
     <tbody>
@@ -36,14 +31,15 @@
             <td>{{CatName}}</td>
             <td>{{myDatetime date}}</td>
             <td>{{moTaNgan}}</td>
-            <td>{{trangThai}}</td>
-            {{#if active}}
-            <td class="text-right">
-                <a class="btn btn-outline-success btn-sm" href="/writer/edit/{{PostID}}" role="button">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a>
-            </td>
-            {{/if}}
+            <td>{{name}}</td>
+            <td>
+                
+                {{#if showOk}}
+                    <i class="fa fa-check-circle-o" style="color:green" aria-hidden="true"></i>
+                {{else}}
+                    <i class="fa fa-times-circle-o" style="color:red" aria-hidden="true"></i>
+                {{/if}}
+                {{trangThai}}</td>
         </tr>
         {{/each}}
 

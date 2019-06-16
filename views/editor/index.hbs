@@ -1,1 +1,57 @@
-<h1>Trang dash board editor</h1>
+{{#section 'css'}}
+
+{{/section}}
+
+{{#section 'js'}}
+
+{{/section}}
+
+<div class="row w-100 m-3" style="justify-content: center">
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor" role="button">Danh sách bài viết Draft</a>
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor/viewmypost" role="button">Xem danh sách bài
+        viết</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">#</th>
+            <th scope="col">Tiêu đề</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Ngày</th>
+            <th scope="col">Mô tả ngắn</th>
+            <th style="width: 9rem" scope="col">Phóng viên</th>
+            <th style="width: 10rem" scope="col">Trạng thái</th>
+            <th style="width: 6rem" scope="col" class="text-right">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                Kiểm duyệt
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <form method="POST">
+            {{#each this.listPost}}
+            <tr>
+                <th class="text-center" scope="row">{{PostID}}</th>
+                <td>{{title}}</td>
+                <td>{{CatName}}</td>
+                <td>{{myDatetime date}}</td>
+                <td>{{moTaNgan}}</td>
+                <td>{{name}}</td>
+                <td>{{trangThai}}</td>
+                {{#if active}}
+                <td class="text-right">
+                    <button type="submit" class="btn btn-outline-success btn-sm" formaction="/editor/accept/{{PostID}}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm" formaction="/editor/decline/{{PostID}}">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </form>
+
+    </tbody>
+</table>
