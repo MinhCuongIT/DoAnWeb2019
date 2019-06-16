@@ -6,7 +6,10 @@ module.exports = {
         return db.load("select * from users");
     },
     allSubscriber: () => {
-        return db.load(`select id, username, name, DATE_FORMAT(date_register,'%d/%m/%Y')  as date_register ,(7- DATEDIFF(now(), date_register)) AS Date from users where type = 'Subscriber'`);
+        return db.load(`select UserID, username, name, DATE_FORMAT(date_register,'%d/%m/%Y')  as date_register ,(7- DATEDIFF(now(), date_register)) AS Date from users where type = 'Subscriber'`);
+    },
+    allEditor: () => {
+        return db.load(`select * from users where type ='Editor'`);
     },
     single: username => {
         return db.load(`select * from users where username = ${username}`);
@@ -20,7 +23,7 @@ module.exports = {
         return db.GiaHan('users', entity);
     },
     update: entity => {
-        return db.update('users', 'id', entity)
+        return db.update('users', 'UserID', entity)
     },
     delete:username=>{
         return db.delete('users', 'username', username)

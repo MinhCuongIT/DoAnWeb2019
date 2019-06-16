@@ -140,6 +140,20 @@ router.get('/accountManage/GiaHan', (req, res) => {
 
    
 })
+router.get('/accountManage/PhanCong', (req, res) => { 
+    
+    accountManageModel.allEditor().then(rows => {
+      console.log("haha");
+       // res.json(rows)
+       res.render('admin/vwaccountManage/PhanCong', {
+        accountManage: rows
+       })
+   }).catch(err => {
+       console.log(err)
+   })
+
+   
+})
 router.get('/accountManage/edit/:id', auth, (req, res) => {
 
     var id = req.params.id
@@ -176,7 +190,10 @@ router.get('/accountManage/GiaHan', auth, (req, res) => {
     // res.end("Add new category")
     res.render('admin/vwaccountManage/GiaHan')
 })
-
+router.get('/accountManage/PhanCong', auth, (req, res) => {
+    // res.end("Add new category")
+    res.render('admin/vwaccountManage/PhanCong')
+})
 // router.post('/accountManage/add', (req, res) => {
 //     // console.log(req.body)
 //     // res.end('...')
@@ -208,7 +225,7 @@ router.get('/accountManage/GiaHan', auth, (req, res) => {
 router.get('/accountManage/update/:id', auth, (req, res) => {
     console.log(moment().format('YYYY-MM-DD'))
     var entity={
-        id:req.params.id,
+        UserID:req.params.id,
         date_register:moment().format('YYYY-MM-DD')
 
     }
@@ -225,7 +242,7 @@ router.get('/accountManage/update/:id', auth, (req, res) => {
 })
 
 router.post('/accountManage/delete', auth, (req, res) => {
-    accountManageModel.delete(req.body.id)
+    accountManageModel.delete(req.body.UserID)
         .then(n => {
             res.redirect('/admin/accountManage')
         })

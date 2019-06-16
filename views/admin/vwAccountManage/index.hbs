@@ -4,17 +4,12 @@
     </h1>
     <div class="card-header" style="float: right">
          <span   scope="col" class="text-right">
-                    <a class="btn btn-outline-success" href="/admin/account/GiaHan" role="button">
+                    <a class="btn btn-outline-success" href="/admin/accountManage/PhanCong" role="button">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Phân công chuyên mục
                     </a>
                 </span>
-        <span  style="margin-right:30px" scope="col" class="text-right ">
-                    <a class="btn btn-outline-success" href="/admin/account/GiaHan" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Duyệt tài khoản
-                    </a>
-                </span >
+        
                 <span style="margin-right:30px"  scope="col" class="text-right">
                     <a class="btn btn-outline-success" href="/admin/accountManage/GiaHan" role="button">
                         <i class="fa fa-plus" aria-hidden="true"></i>
@@ -36,14 +31,14 @@
         <tbody>
             {{#each this.accountManage}}
             <tr>
-                <th class="text-center" scope="row">{{id}}</th>
+                <th class="text-center" scope="row">{{UserID}}</th>
                 <td>{{username}}</td>
                  <td>{{name}}</td>
                   <td>{{type}}</td>
                    <td style="color: {{{Mau this.status}}}"> {{{TrangThai this.status}}}</td>
                 <td class="text-right">
                      
-                    <a class="btn btn-primary btn-sm" href="/admin/accountManage/edit/{{id}}" role="button">
+                    <a class="btn btn-primary btn-sm" href="/admin/accountManage/edit/{{UserID}}" role="button">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
                 </td>
