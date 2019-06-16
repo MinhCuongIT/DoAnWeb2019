@@ -27,6 +27,7 @@ router.post('/', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Writer') {
         throw new Error('You do not have permission to access this link')
     }
+
     categoryModel.single(req.body.selectCatID)
         .then(rows => {
             var idate = moment(req.body.date, 'DD/MM/YYYY').format('YYYY-MM-DD')
@@ -39,8 +40,9 @@ router.post('/', auth, (req, res) => {
                 date: idate,
                 content: req.body.txtContent,
                 views: 78,
-                writerId: res.locals.authUser.id,
-                trangThai: 'Chưa được duyệt'
+                writerId: res.locals.authUser.UserID,
+                trangThai: 'Chưa được duyệt',
+                premium: req.body.cbPremium == 1 ? 1 : 0
             }
             postModel.add(entity)
                 .then(id => {
@@ -60,7 +62,7 @@ router.get('/viewpost', auth, (req, res) => {
         throw new Error('You do not have permission to access this link')
     }
     //kiểm tra bài viết từ chối hoặc chưa được duyệt thì mới được hiệu chỉnh
-    postModel.allByWriter(res.locals.authUser.id)
+    postModel.allByWriter(res.locals.authUser.UserID)
         .then(rows => {
             // for (const r in rows) {
             //     console.log(r)
@@ -138,7 +140,7 @@ router.post('/edit/:post', auth, (req, res) => {
                 date: idate,
                 content: req.body.txtContent,
                 views: 1,
-                writerId: res.locals.authUser.id,
+                writerId: res.locals.authUser.UserID,
                 trangThai: 'Chưa được duyệt'
             }
             postModel.update(entity)
