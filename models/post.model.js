@@ -15,11 +15,23 @@ module.exports = {
     allByCat: catId => {
         return db.load(`select * from post where catId = ${catId}`);
     },
-    allByEditor: editorId =>{
+    allByEditor: editorId => {
         return db.load(`
         select *
         from post p, categories c, users u
         where p.tagId = c.CatID and p.writerId = u.UserID and p.editorId = ${editorId}
+        `);
+    },
+    allToPublish: () => {
+        return db.load(`
+        select *
+        from post p, categories c, users u
+        where p.tagId = c.CatID and p.editorId = u.UserID and p.trangThai = 'Đã được duyệt'
+        `);
+    },
+    publish: postId => {
+        return db.load(`
+        update post set trangThai = 'Đã xuất bản' where PostID = ${postId}
         `);
     },
     allByWriter: writerId => {

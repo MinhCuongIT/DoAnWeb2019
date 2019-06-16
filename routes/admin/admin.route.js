@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var postModel = require('../../models/post.model')
 var auth = require('../../middlewares/auth')
 
 var categoryModel = require('../../models/category.model');
@@ -68,7 +68,7 @@ router.get('/categories/add', auth, (req, res) => {
         throw new Error('You do not have permission to access this link')
     }
     // res.end("Add new category")
-    res.render('admin/vwCategories/add',{
+    res.render('admin/vwCategories/add', {
         layout: 'main_2.hbs'
     })
 })
@@ -81,8 +81,8 @@ router.post('/categories/add', (req, res) => {
     // res.end('...')
 
     categoryModel.add({
-        CatName:req.body.CatName,
-        CatFather:0
+        CatName: req.body.CatName,
+        CatFather: 0
     })
         .then(id => {
             console.log(`insertId: ${id}`)
@@ -121,6 +121,35 @@ router.post('/categories/delete', auth, (req, res) => {
 
 // ============ Quản lý tag ============ //
 
+// ============ Quản lý xuất bản bài post ============ //
+router.get('/post', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    postModel.allToPublish()
+        .then(rows => {
+            res.render('admin/vwPosts/index', {
+                layout: 'main_2.hbs',
+                listPost: rows,
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+})
+
+router.post('/post/:post', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var postId = req.params.post
+    postModel.publish(postId)
+        .then(id => {
+            res.redirect('/admin/post')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 // ============ Quản lý Tài khoản ============ //
 
 module.exports = router;
