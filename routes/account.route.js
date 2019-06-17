@@ -7,18 +7,18 @@ var passport = require('passport')
 var auth = require('../middlewares/auth')
 var bcrypt = require('bcrypt')
 
-
-router.get('/', (req, res, next) => {
-    userModel.all()
-        .then(rows => {
-            res.render('vwAccount/index', {
-                accounts: rows
-            })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-})
+//Dev MODE
+// router.get('/', (req, res, next) => {
+//     userModel.all()
+//         .then(rows => {
+//             res.render('vwAccount/index', {
+//                 accounts: rows
+//             })
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// })
 
 router.get('/register', (req, res, next) => {
     res.render('vwAccount/register')

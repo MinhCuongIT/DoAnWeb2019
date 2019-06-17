@@ -11,11 +11,11 @@ router.get('/', (req, res, next) => {
 
     var catId = req.query.cat
     var postId = req.query.post
-    if (isNaN(postId)) {
+    if (isNaN(postId) || isNaN(postId)) {
         throw new Error('Id is not a number!')
     }
     Promise.all([
-        postModel.single(postId),
+        postModel.single1(postId),
         postModel.commentByPostID(postId),
         postModel.postCungChuyenMuc(catId, postId)
     ])
