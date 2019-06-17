@@ -318,6 +318,33 @@ router.get('/accountManage/add', auth, (req, res) => {
     })
     
 })
+router.post('/accountManage/add', (req, res) => {
+    // console.log(req.body)
+    // res.end('...')
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    console.log("ahihi")
+    accountManageModel.add({
+        username:req.body.username,
+
+        password:req.body.password,
+        name: req.body.name,
+        email: req.body.email,
+        dob: req.body.dob,
+        type: req.body.rbLoai,
+        status: 0,
+        date_register:moment().format('YYYY-MM-DD')
+        
+    })
+        .then(id => {
+            console.log(`insertId: ${id}`)
+            res.redirect('/admin/accountManage')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 router.post('/accountManage/update', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {

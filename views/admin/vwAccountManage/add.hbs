@@ -18,41 +18,33 @@
 </script>
 {{/section}}
 <div class="card shadow">
-    <div class="card-header">
+    <div class="card-header" action="/admin/accountManage/add">
         <h4>
         Thêm tài khoản
         </h4>
     </div>
     <div class="card-body">
-        
-        {{!-- <form method="POST" action="/admin/accountManage/add"> --}}
+         
+       <form method="POST" >
         <div class="row">
     <div class="col">
         
      <div class="form-group">
-                <label for="txtUsername">Tên đăng nhập</label>
-                <input autofocus required type="text" class="form-control" id="txtUsername" name="username">
+                <label for="username">Tên đăng nhập</label>
+                <input autofocus required type="text" class="form-control" id="username" name="username">
             </div>
             <div class="form-group">
-                <label for="txtPassword">Mật khẩu</label>
-                <input required type="password" class="form-control" id="txtPassword" name="password">
+                <label for="password">Mật khẩu</label>
+                <input required type="password" class="form-control" id="password" name="password">
             </div>
            
 
              <div class="form-group">
-                <label for="name"><b>Tên</b></label>
+                <label for="name">Tên</label>
                 <input autofocus type="text" class="form-control" id="name" name="name"
                     value="{{this.accountManage.name}}">
             </div>
-            <div class="form-group">
-                <label for="txtEmail">Email</label>
-                <input required type="text" class="form-control" id="txtEmail" name="email">
-            </div>
            
-             <div class="form-group">
-                <label for="txtDOB">Ngày sinh</label>
-                <input required type="text" class="form-control" id="txtDOB" name="dob">
-            </div>
             
 
     </div>
@@ -60,7 +52,15 @@
             
              
     <div class="col">
-    
+     <div class="form-group">
+                <label for="email">Email</label>
+                <input required type="text" class="form-control" id="email" name="email">
+            </div>
+           
+             <div class="form-group">
+                <label for="txtDOB">Ngày sinh</label>
+                <input required type="text" class="form-control" id="txtDOB" name="dob">
+            </div>
    <div class="form-group">
                 <label for="">Loại tài khoản:</label>
                 <div class="form-control">
@@ -92,24 +92,15 @@
            
                 
             </div>
-            <div class="form-group">
-                <label for="date_register"><b>Ngày đăng kí</b></label>
-                <input readonly type="text" class="form-control" id="date_register" name="date_register"
-                    value="moment().format('YYYY-MM-DD')">
-            </div>
-  </div>
+           
   </div>
            
-            <a class="btn btn-primary" href="/admin/accountManage" role="button">
-                <i class="fa fa-backward" aria-hidden="true"></i>
-                List
-            </a>
-            <div class="card-footer text-right">
-            <button type="submit" class="btn btn-lg btn-success btn-block">
+       
+         <button type="submit" class="btn btn-success">
                 <i class="fa fa-check" aria-hidden="true"></i>
-                Đăng kí
+                Save
             </button>
-        </div>
+            
         </form>
         
 
