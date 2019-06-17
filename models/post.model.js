@@ -5,6 +5,14 @@ module.exports = {
     all: () => {
         return db.load("select * from post p left join categories c on p.tagId = c.CatID");
     },
+    FTS: (searchText) => {
+        return db.load(`
+        SELECT *
+        FROM post 
+        WHERE MATCH (title,moTaNgan,content) AGAINST ('${searchText}' IN NATURAL LANGUAGE MODE)
+        and trangThai = 'Đã xuất bản' and premium = 0 limit 10
+        `);
+    },
     allPremium: () => {
         return db.load("select * from post where premium = 1 and trangThai = 'Đã xuất bản'");
     },

@@ -34,7 +34,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    
+
     var catId = req.query.cat
     var postId = req.query.post
 
@@ -59,4 +59,18 @@ router.post('/', (req, res, next) => {
         })
 })
 
+router.post('/search', (req, res, next) => {
+
+    // res.end(`ban tim kiem ${req.body.searchText}`)
+    postModel.FTS(req.body.searchText)
+        .then(rows => {
+            res.render('vwProducts/bySearch',{
+                products:rows
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            next()
+        })
+})
 module.exports = router;

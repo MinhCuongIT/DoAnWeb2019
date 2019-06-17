@@ -10,6 +10,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/logo.png" style="border-radius: 50%" />
     {{{_sections.css}}}
+    <style>
+        .searchbar {
+            height: 40px;
+            background-color: rgb(236, 228, 228);
+            border-radius: 30px;
+        }
+        ::-webkit-input-placeholder {
+            color: #fff;
+        }
+        .search_input {
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            line-height: 40px;
+            transition: width 0.4s linear;
+            width: auto;
+            padding: 0 15px;
+        }
+        .search_icon {
+            height: 40px;
+            width: 40px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+        }
+         .searchbar:hover{
+             background-color: rgb(224, 204, 204);
+         }
+    </style>
 </head>
 
 <body>
@@ -40,6 +74,15 @@
                 {{/each}}
 
             </ul>
+
+            <div class="searchbar">
+                <form action="/post/search" method="POST">
+                    <input required name="searchText" class="search_input" type="text" name="" placeholder="Tìm kiếm ...">
+                    <button type="submit" class="btn btn-sm search_icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
 
             <form id="frmSignout" action="/account/logout" method="POST"></form>
             <ul class="navbar-nav">
@@ -104,9 +147,10 @@
                                         {{views}}
                                     </p>
                                     <p style="font-size: 13px" class="card-text">{{mySubString moTaNgan}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}"
+                                        role="button">{{CatName}}</a>
                                 </div>
-                                
+
                             </div>
                         </a>
                         {{/each}}
@@ -125,7 +169,7 @@
                     </div>
                     <div class="card-body p-0">
                         {{#each lcTop10New}}
-                            
+
                         <a style="text-decoration: none; color: inherit" href="/post?cat={{catId}}&post={{PostID}}">
                             <div class="card mb-2 shadow">
                                 <img src="{{image_link}}" class="card-img-top" alt="{{title}}">
@@ -137,7 +181,8 @@
                                         {{views}}
                                     </p>
                                     <p style="font-size: 13px" class="card-text">{{mySubString moTaNgan}}</p>
-                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}"
+                                        role="button">{{CatName}}</a>
                                 </div>
                             </div>
                         </a>
@@ -204,6 +249,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+
+    </script>
     {{{_sections.js}}}
 </body>
 
