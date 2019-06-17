@@ -17,7 +17,7 @@
                     </a>
                 </span>
                  <span style="margin-right:30px"  scope="col" class="text-right">
-                    <a class="btn btn-outline-success" href="/admin/accountManage/GiaHan" role="button">
+                    <a class="btn btn-outline-success" href="/admin/accountManage/add" role="button">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Thêm
                     </a>
@@ -45,24 +45,20 @@
                     
                   <td>{{type}}</td>
                    <td style="color: {{{Mau this.status}}}"> {{{TrangThai this.status}}}</td>
+                    
                 <td class="text-right">
                      
                     <a class="btn btn-info btn-sm" href="/admin/accountManage/detail/{{UserID}}" role="button">
                         <i class="fa fa-info" aria-hidden="true"></i>
                     </a>
                 </td>
-                 <td style="margin-right:-10px" class="text-right">
+                 <td style="margin-right:-20px" class="text-right">
                      
                     <a class="btn btn-primary btn-sm" href="/admin/accountManage/edit/{{UserID}}" role="button">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
                 </td>
-                 <td style="margin-right:-10px" class="text-right">
-                     
-                    <a class="btn btn-primary btn-sm" href="/admin/accountManage/delete/{{UserID}}" role="button">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </a>
-                </td>
+                
                 {{!-- <td>
                     <button type="submit" class="btn btn-danger" formaction="/admin/accountManage/delete">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>

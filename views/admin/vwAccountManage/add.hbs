@@ -1,3 +1,22 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(function () {
+        $('#txtDOB').datetimepicker({
+            format: 'd/m/Y',
+             timepicker: false,
+            mask: true
+        });
+    })
+</script>
+{{/section}}
 <div class="card shadow">
     <div class="card-header">
         <h4>
@@ -5,30 +24,34 @@
         </h4>
     </div>
     <div class="card-body">
-       
-        <form method="POST" action="/admin/accountManage/update">
+        
+        {{!-- <form method="POST" action="/admin/accountManage/add"> --}}
         <div class="row">
     <div class="col">
         
-      <div class="form-group">
-                <label for="txtUserID"><b>#</b></label>
-                <input readonly type="text" class="form-control" id="txtUserID" name="UserID"
-                    value="{{this.accountManage.UserID}}">
+     <div class="form-group">
+                <label for="txtUsername">Tên đăng nhập</label>
+                <input autofocus required type="text" class="form-control" id="txtUsername" name="username">
             </div>
+            <div class="form-group">
+                <label for="txtPassword">Mật khẩu</label>
+                <input required type="password" class="form-control" id="txtPassword" name="password">
+            </div>
+           
+
              <div class="form-group">
                 <label for="name"><b>Tên</b></label>
                 <input autofocus type="text" class="form-control" id="name" name="name"
                     value="{{this.accountManage.name}}">
             </div>
             <div class="form-group">
-                <label for="email"><b>email</b></label>
-                <input  type="text" class="form-control" id="email" name="email"
-                    value="{{this.accountManage.email}}">
+                <label for="txtEmail">Email</label>
+                <input required type="text" class="form-control" id="txtEmail" name="email">
             </div>
-            <div class="form-group">
-                <label for="dob"><b>Ngày sinh</b></label>
-                <input  type="text" class="form-control" id="dob" name="dob"
-                    value="{{DateFormat this.accountManage.dob}}">
+           
+             <div class="form-group">
+                <label for="txtDOB">Ngày sinh</label>
+                <input required type="text" class="form-control" id="txtDOB" name="dob">
             </div>
             
 
@@ -37,27 +60,42 @@
             
              
     <div class="col">
-     <div class="form-group">
-                <label for="username"><b>Tên tài khoản</b></label>
-                <input readonly type="text" class="form-control" id="username" name="username"
-                    value="{{this.accountManage.username}}">
-           
-    </div>
-    <div class="form-group">
-                <label for="type"><b>Loại</b></label>
-                <input  type="text" class="form-control" id="type" name="type"
-                    value="{{this.accountManage.type}}">
+    
+   <div class="form-group">
+                <label for="">Loại tài khoản:</label>
+                <div class="form-control">
+                    <form action="">
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio1">
+                                <input type="radio" class="form-check-input" id="radio1" name="rbLoai"
+                                    value="Subscriber" checked>Subscriber
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" id="radio2" name="rbLoai"
+                                    value="Writer">Writer
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio3">
+                                <input type="radio" class="form-check-input" id="radio3" name="rbLoai"
+                                    value="Editor">Editor
+                            </label>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label for="status"><b>Trạng thái</b></label>
-                <span ><small>(Nhập 1 nếu block, 0 nếu Active)<small></span>
-                <input style="color: {{{Mau this.accountManage.status}}}" type="text" class="form-control" id="status" name="status"
-                     value="{{TrangThai this.accountManage.status}}">
+         
+            
+           
+                
             </div>
             <div class="form-group">
                 <label for="date_register"><b>Ngày đăng kí</b></label>
-                <input  type="text" class="form-control" id="date_register" name="date_register"
-                    value="{{DateFormat this.accountManage.date_register}}">
+                <input readonly type="text" class="form-control" id="date_register" name="date_register"
+                    value="moment().format('YYYY-MM-DD')">
             </div>
   </div>
   </div>
@@ -66,16 +104,14 @@
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
             </a>
-            <button type="submit" class="btn btn-danger" formaction="/admin/accountManage/delete">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                Delete
-            </button>
-            <button type="submit" class="btn btn-success">
+            <div class="card-footer text-right">
+            <button type="submit" class="btn btn-lg btn-success btn-block">
                 <i class="fa fa-check" aria-hidden="true"></i>
-                Save
+                Đăng kí
             </button>
+        </div>
         </form>
-      
+        
 
 
 

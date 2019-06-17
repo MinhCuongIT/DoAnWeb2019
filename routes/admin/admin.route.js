@@ -29,12 +29,13 @@ router.get('/categories/', auth, (req, res) => {
     })
 })
 router.get('/categories/add', (req, res) => { 
-    
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     categoryModel.allParent().then(rows => {
-        console.log(rows)
        // res.json(rows)
        res.render('admin/vwCategories/add', {
-           categories: rows
+           categories: rows,
        })
    }).catch(err => {
        console.log(err)
@@ -99,7 +100,8 @@ router.post('/categories/add', (req, res) => {
     categoryModel.add({
         CatName:req.body.CatName,
 
-        CatFather:req.body.CatParent
+        CatFather:req.body.CatParent,
+        
     })
         .then(id => {
             console.log(`insertId: ${id}`)
@@ -109,6 +111,7 @@ router.post('/categories/add', (req, res) => {
             console.log(err)
         })
 })
+
 
 
 router.post('/categories/update', auth, (req, res) => {
@@ -171,22 +174,30 @@ router.post('/post/:post', auth, (req, res) => {
 // ============ Quản lý Tài khoản ============ //
 
 router.get('/accountManage', auth, (req, res) => {
-    
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+
     accountManageModel.all().then(rows => {
         res.render('admin/vwaccountManage/index', {
-            accountManage: rows
+            accountManage: rows,
+            layout: 'main_2.hbs'
         })
     }).catch(err => {
         console.log(err)
     })
 })
+   
 router.get('/accountManage/GiaHan', (req, res) => { 
-    
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     accountManageModel.allSubscriber().then(rows => {
       
        // res.json(rows)
        res.render('admin/vwaccountManage/GiaHan', {
-        accountManage: rows
+        accountManage: rows,
+        layout: 'main_2.hbs'
        })
    }).catch(err => {
        console.log(err)
@@ -195,11 +206,14 @@ router.get('/accountManage/GiaHan', (req, res) => {
    
 })
 router.get('/accountManage/PhanCong', (req, res) => { 
-    
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     accountManageModel.allEditor().then(rows => {
        // res.json(rows)
        res.render('admin/vwaccountManage/PhanCong', {
-        accountManage: rows
+        accountManage: rows,
+        layout: 'main_2.hbs'
        })
    }).catch(err => {
        console.log(err)
@@ -244,8 +258,11 @@ router.get('/accountManage/edit/:id', auth, (req, res) => {
 })
 
 router.get('/accountManage/GiaHan', auth, (req, res) => {
-    // res.end("Add new category")
-    res.render('admin/vwaccountManage/GiaHan')
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+
+    res.render('admin/vwaccountManage/GianHan')
 })
 router.get('/accountManage/detail/:id', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {
@@ -284,28 +301,28 @@ router.get('/accountManage/detail/:id', auth, (req, res) => {
 
 })
 router.get('/accountManage/PhanCong', auth, (req, res) => {
-    // res.end("Add new category")
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     res.render('admin/vwaccountManage/PhanCong')
 })
-// router.post('/accountManage/add', (req, res) => {
-//     // console.log(req.body)
-//     // res.end('...')
-
-//     accountManageModel.add({
-//         CatName:req.body.CatName,
-
-//         CatFather:req.body.CatParent
-//     })
-//         .then(id => {
-//             console.log(`insertId: ${id}`)
-//             res.redirect('/admin/categories')
-//         })
-//         .catch(err => {
-//             console.log(err)
-//         })
-// })
+router.get('/accountManage/add', auth, (req, res) => {
+    console.log("haha");
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    // res.end("Add new category")
+    res.render('admin/vwAccountManage/add', {
+        
+        layout: 'main_2.hbs'
+    })
+    
+})
 
 router.post('/accountManage/update', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     accountManageModel.update(req.body)
         .then(n => {
             res.redirect('/admin/accountManage')
@@ -316,6 +333,9 @@ router.post('/accountManage/update', auth, (req, res) => {
 })
 
 router.get('/accountManage/update/:id', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     console.log(moment().format('YYYY-MM-DD'))
     var entity={
         UserID:req.params.id,
@@ -335,6 +355,9 @@ router.get('/accountManage/update/:id', auth, (req, res) => {
 })
 
 router.post('/accountManage/delete', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
     accountManageModel.delete(req.body.username)
         .then(n => {
             res.redirect('/admin/accountManage')
@@ -342,42 +365,6 @@ router.post('/accountManage/delete', auth, (req, res) => {
         .catch(err => {
             console.log(err)
         })
-})
-router.get('/accountManage/delete/:id', auth, (req, res) => {
-    if (res.locals.authUser.type !== 'Admin') {
-        throw new Error('You do not have permission to access this link')
-    }
-    var id = req.params.id
-    if (isNaN(id)) {
-        res.render('admin/vwAccountManage/index', {
-            error: true,
-            layout: 'main_2.hbs'
-        })
-    }
-    else {
-        accountManageModel.single(id)
-            .then(rows => {
-                console.log(rows[0])
-                if (rows.length > 0) {
-                    res.render('admin/vwAccountManage/Detail', {
-                        error: false,
-                        accountManage: rows[0],
-                        layout: 'main_2.hbs'
-                    })
-                }
-                else {
-                    res.render('admin/vwAccountManage/index', {
-                        error: true,
-                        layout: 'main_2.hbs'
-                    })
-                }
-            })
-            .catch(err => {
-                console.log(err)
-                res.end("Co loi xay ra!")
-            })
-    }
-
 })
 
 

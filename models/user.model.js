@@ -30,5 +30,9 @@ module.exports = {
     delete:username=>{
         return db.delete('users', 'username', username)
     },
+    delete:id=>{
+        return db.delete('users', 'id', username)
+    },
+
     
 }
