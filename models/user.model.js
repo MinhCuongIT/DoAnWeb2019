@@ -11,10 +11,10 @@ module.exports = {
     allSubscriber: () => {
         return db.load("select * from users where type = 'Subscriber'");
     },
-    renewal: (userId,date) => {
+    renewal: (userId, date) => {
         return db.load(`update users set date_update = '${date}' where UserID = ${userId}`);
     },
-    updateGeneral: (name, email, dob, userId)=>{
+    updateGeneral: (name, email, dob, userId) => {
         return db.load(`update users set name = '${name}', email = '${email}', dob = '${dob}' where UserID = ${userId}`);
     },
     updatePassword: (userId, newPassword) => {
@@ -22,6 +22,9 @@ module.exports = {
     },
     single: username => {
         return db.load(`select * from users where username = ${username}`);
+    },
+    singleByUserID: userId => {
+        return db.load(`select * from users where UserID = ${userId}`);
     },
     setRole: (userId, catId) => {
         return db.load(`update users set CatID = ${catId} where UserID = ${userId}`);
@@ -36,7 +39,7 @@ module.exports = {
     update: entity => {
         return db.update('users', 'username', entity)
     },
-    delete:username=>{
+    delete: username => {
         return db.delete('users', 'username', username)
     }
 }
