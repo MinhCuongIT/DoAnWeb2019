@@ -5,6 +5,25 @@ module.exports = {
     all: () => {
         return db.load("select * from post p left join categories c on p.tagId = c.CatID ");
     },
+    allPremium: () => {
+        return db.load("select * from post where premium = 1 and trangThai = 'Đã xuất bản'");
+    },
+    pageByPremium: (limit, offset) => {
+        return db.load(`
+        select *
+        from post p left join categories c on p.tagId = c.CatID
+        where p.premium = 1 and p.trangThai = 'Đã xuất bản'
+        limit ${limit} offset ${offset}
+        `);
+    },
+    singlePremium: id => {
+        return db.load(`SELECT *
+                        FROM post p left join categories c on p.tagId = c.CatID
+                        WHERE p.premium = 1 and p.PostID = ${id}`);
+    },
+    countByPremium: () => {
+        return db.load(`select count(*) as total from post p where p.premium = 1 and p.trangThai = 'Đã xuất bản'`);
+    },
     allWithWriter: () => {
         return db.load(`
         select * 

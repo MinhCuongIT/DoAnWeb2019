@@ -1,0 +1,27 @@
+<div style="width: 100%; border-bottom: 1px solid #da262e; margin-top: 1rem">
+    <span style="background-color: #da262e;color: white; font-size: 1.2rem">Bài viết Premium</span>
+</div>
+
+
+<div class="row mt-3">
+    <img style="margin: auto" width="500px" src="{{post.image_link}}" alt="{{post.title}}">
+</div>
+<div class="row mt-3 text-center">
+    <h4 style="margin: auto">{{post.title}}</h4>
+</div>
+<div class="row mt-2">
+    <div style="margin: auto">
+        <p style="font-size: 15px" class="font-italic">
+            {{myDatetime post.date}}
+            <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+            {{post.views}}
+        </p>
+    </div>
+</div>
+<div class="row mt-3 ">
+    <div class="card">
+        <div class="card-body">
+            {{{post.content}}}
+        </div>
+    </div>
+</div>

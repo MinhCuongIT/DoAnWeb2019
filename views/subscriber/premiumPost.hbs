@@ -1,0 +1,55 @@
+<div style="width: 100%; border-bottom: 1px solid #da262e; margin-top: 1rem">
+    <span style="background-color: #da262e;color: white; font-size: 1.2rem">Danh sách bài viết Premium</span>
+</div>
+
+{{#each this.products}}
+<div class="card shadow mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img style="width: 75%;" src="{{image_link}}" class="card-img" alt="{{title}}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <a style="text-decoration: none; color: inherit" href="/subscriber/view/{{PostID}}">
+                    <h6 class="card-title">{{title}}</h6>
+                    <p style="font-size: 12px" class="font-italic">
+                        {{myDatetime date}}
+                        <i class="fa fa-eye fa-sm" aria-hidden="true"></i>
+                        {{views}}
+                    </p>
+                    <p style="font-size: 13px" class="card-text">{{mySubString moTaNgan}}</p>
+                    <a class="btn btn-outline-success btn-sm" href="/categories/{{tagId}}" role="button">{{CatName}}</a>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+<div class="row">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{#each this.pages}}
+            {{#if active}}
+            <li class="page-item active">
+                <a class="page-link" href="javascript:;">{{iPage}}</a>
+            </li>
+            {{else}}
+            <li class="page-item">
+                <a class="page-link" href="?page={{iPage}}">{{iPage}}</a>
+            </li>
+            {{/if}}
+
+            {{/each}}
+            <li class="page-item">
+                <a class="page-link" href="" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
