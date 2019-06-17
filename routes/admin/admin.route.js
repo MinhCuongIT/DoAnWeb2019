@@ -247,6 +247,41 @@ router.get('/accountManage/GiaHan', auth, (req, res) => {
     // res.end("Add new category")
     res.render('admin/vwaccountManage/GiaHan')
 })
+router.get('/accountManage/detail/:id', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var id = req.params.id
+    if (isNaN(id)) {
+        res.render('admin/vwAccountManage/index', {
+            error: true,
+            layout: 'main_2.hbs'
+        })
+    }
+    else {
+        accountManageModel.single(id)
+            .then(rows => {
+                if (rows.length > 0) {
+                    res.render('admin/vwAccountManage/detail', {
+                        error: false,
+                        accountManage: rows[0],
+                        layout: 'main_2.hbs'
+                    })
+                }
+                else {
+                    res.render('admin/vwAccountManage/index', {
+                        error: true,
+                        layout: 'main_2.hbs'
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                res.end("Co loi xay ra!")
+            })
+    }
+
+})
 router.get('/accountManage/PhanCong', auth, (req, res) => {
     // res.end("Add new category")
     res.render('admin/vwaccountManage/PhanCong')
@@ -299,7 +334,7 @@ router.get('/accountManage/update/:id', auth, (req, res) => {
 })
 
 router.post('/accountManage/delete', auth, (req, res) => {
-    accountManageModel.delete(req.body.UserID)
+    accountManageModel.delete(req.body.username)
         .then(n => {
             res.redirect('/admin/accountManage')
         })
@@ -378,4 +413,8 @@ Handlebars.registerHelper("Button", function(currentValue){
         return "Nhân viên"
     }
 })
+Handlebars.registerHelper("DateFormat", function(currentValue){
+    return  moment(currentValue).format("YYYY-MM-DD");
+})
+
 module.exports = router;

@@ -1,15 +1,11 @@
 <div class="card shadow">
     <div class="card-header">
         <h4>
-        Chỉnh sửa tài khoản người dùng
+        Thêm tài khoản
         </h4>
     </div>
     <div class="card-body">
-        {{#if this.error}}
-        <div class="alert alert-danger" role="alert">
-            Invalid UserID. <a href="/admin/accountManage" class="alert-link">Go back</a>.
-        </div>
-        {{else}}
+       
         <form method="POST" action="/admin/accountManage/update">
         <div class="row">
     <div class="col">
@@ -79,7 +75,7 @@
                 Save
             </button>
         </form>
-        {{/if}}
+      
 
 
 

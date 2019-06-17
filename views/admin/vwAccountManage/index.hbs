@@ -16,6 +16,12 @@
                         Gia hạn tài khoản
                     </a>
                 </span>
+                 <span style="margin-right:30px"  scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/accountManage/GiaHan" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm
+                    </a>
+                </span>
     </div>
     <table class="table table-hover">
         <thead>
@@ -24,8 +30,10 @@
                 <th scope="col">Tên người dùng</th>
                  <th scope="col">Họ tên</th>
                   <th scope="col">Phân hệ</th>
+                 
                    <th scope="col">Trạng thái</th>
-                <th scope="col"></th>
+                       
+                
             </tr>
         </thead>
         <tbody>
@@ -34,9 +42,16 @@
                 <th class="text-center" scope="row">{{UserID}}</th>
                 <td>{{username}}</td>
                  <td>{{name}}</td>
+                    
                   <td>{{type}}</td>
                    <td style="color: {{{Mau this.status}}}"> {{{TrangThai this.status}}}</td>
                 <td class="text-right">
+                     
+                    <a class="btn btn-primary btn-sm" href="/admin/accountManage/detail/{{UserID}}" role="button">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                    </a>
+                </td>
+                 <td style="margin-right:-10px" class="text-right">
                      
                     <a class="btn btn-primary btn-sm" href="/admin/accountManage/edit/{{UserID}}" role="button">
                         <i class="fa fa-pencil" aria-hidden="true"></i>

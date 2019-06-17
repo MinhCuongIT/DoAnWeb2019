@@ -1,0 +1,46 @@
+<div class="card shadow">
+    <h1 class="card-header">
+        Quản lý người dùng
+    </h1>
+    <div class="card-header" style="float: right">
+        
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Tên người dùng</th>
+                 <th scope="col">Họ tên</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Ngày sinh</th>
+                  <th scope="col">Phân hệ</th>
+                 <th scope="col">Ngày đăng kí</th>
+                   <th scope="col">Trạng thái</th>
+                       
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.accountManage}}
+            <tr>
+                <th class="text-center" scope="row">{{this.accountManage.UserID}}</th>
+                <td>{{this.accountManage.username}}</td>
+                 <td>{{this.accountManage.name}}</td>
+                  <td>{{this.accountManage.email}}</td>
+                   <td>{{this.accountManage.dob}}</td>
+                    
+                  <td>{{this.accountManage.type}}</td>
+                  <td>{{DateFormat this.accountManage.date_register}}</td>
+                   <td style="color: {{{Mau this.accountManage.status}}}"> {{{TrangThai this.accountManage.status}}}</td>
+                <td class="text-right">
+                     
+                    <a class="btn btn-primary btn-sm" href="/admin/accountManage/edit/{{UserID}}" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
