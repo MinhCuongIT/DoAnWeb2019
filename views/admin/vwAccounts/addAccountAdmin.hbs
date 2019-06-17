@@ -1,0 +1,63 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(function () {
+        $('#txtDOB').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true
+        });
+    })
+</script>
+{{/section}}
+
+<form method="POST" id="frmRegister">
+    <div class="card shadow">
+        <h4 class="card-header text-center">
+            Thêm tài khoản Admin mới
+        </h4>
+        <div class="card-body">
+            <h5 class="mb-3">Thông tin</h5>
+            <div class="form-group">
+                <label for="txtUsername">Tên đăng nhập</label>
+                <input autofocus required type="text" class="form-control" id="txtUsername" name="username">
+            </div>
+            <div class="form-group">
+                <label for="txtPassword">Mật khẩu</label>
+                <input required type="password" class="form-control" id="txtPassword" name="password">
+            </div>
+            <div class="form-group">
+                <label for="txtConfirm">Xác nhận lại</label>
+                <input required type="password" class="form-control" id="txtConfirm" name="confirm">
+            </div>
+
+            <hr class="mb-4">
+            <h5 class="mb-3">Thông tin đăng kí</h5>
+            <div class="form-group">
+                <label for="txtName">Tên</label>
+                <input required type="text" class="form-control" id="txtName" name="name">
+            </div>
+            <div class="form-group">
+                <label for="txtEmail">Email</label>
+                <input required type="text" class="form-control" id="txtEmail" name="email">
+            </div>
+            <div class="form-group">
+                <label for="txtDOB">Ngày sinh</label>
+                <input required type="text" class="form-control" id="txtDOB" name="dob">
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-lg btn-success btn-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Thêm
+            </button>
+        </div>
+    </div>
+</form>

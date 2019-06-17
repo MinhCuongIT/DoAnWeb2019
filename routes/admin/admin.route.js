@@ -5,6 +5,7 @@ var userModel = require('../../models/user.model')
 var auth = require('../../middlewares/auth')
 var moment = require('moment')
 var categoryModel = require('../../models/category.model');
+var bcrypt = require('bcrypt')
 
 // ============ Màn hình chủ ============ //
 // router.get('/', auth, (req, res) => {
@@ -152,7 +153,120 @@ router.post('/post/:post', auth, (req, res) => {
         })
 })
 // ============ Quản lý Tài khoản ============ //
+router.get('/accounts', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    userModel.all()
+        .then(rows => {
+            res.render('admin/vwAccounts/viewAccount', {
+                layout: 'main_2.hbs',
+                users: rows
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
+router.get('/accounts/edit/:user', auth, (req, res) => {
+    var userId = req.params.user
+    userModel.singleByUserID(userId)
+        .then(rows => {
+            res.render('admin/vwAccounts/editAccount', {
+                layout: 'main_2.hbs',
+                user: rows[0]
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+router.post('/accounts/edit/:user', auth, (req, res) => {
+    var userId = req.params.user
+    var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD')
+    userModel.updateGeneral(req.body.name, req.body.email, dob, userId)
+        .then(id => {
+            res.redirect('/admin/accounts')
+        })
+        .catch(err => {
+            console.log(err)
+            next()
+        })
+})
+
+router.get('/accounts/changepassword/:user', auth, (req, res) => {
+    var userId = req.params.user
+    console.log(`Doi mat khau cho ${userId}`)
+    res.render('subscriber/changePassword', {
+        layout: 'main_2.hbs'
+    })
+})
+
+router.post('/accounts/changepassword/:user', auth, (req, res) => {
+    var userId = req.params.user
+    console.log(`Doi mat khau cho ${userId}`)
+    userModel.singleByUserID(userId)
+        .then(rows => {
+            var ret = bcrypt.compareSync(req.body.oldPassword, rows[0].password)
+
+            if (!ret) {
+                res.render('admin/vwAccounts/changeFailWithOld')
+            } else {
+
+                if (req.body.newPassword !== req.body.confirm) {
+                    res.render('admin/vwAccounts/changeFail')
+                } else {
+                    var saltRounds = 10
+                    var hash = bcrypt.hashSync(req.body.newPassword, saltRounds)
+                    userModel.updatePassword(userId, hash)
+                        .then(id => {
+                            res.redirect('/admin/accounts')
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            next()
+                        })
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+})
+
+router.get('/accounts/addadmin', auth, (req, res) => {
+    res.render('admin/vwAccounts/addAccountAdmin', {
+        layout: 'main_2.hbs'
+    })
+})
+
+router.post('/accounts/addadmin', auth, (req, res) => {
+    var saltRounds = 10
+    var hash = bcrypt.hashSync(req.body.password, saltRounds)
+    var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD')
+    if (req.body.password === req.body.confirm) {
+        var entity = {
+            username: req.body.username,
+            password: hash,
+            email: req.body.email,
+            name: req.body.name,
+            dob: dob,
+            type: 'Admin'
+        }
+        userModel.add(entity).then(id => {
+            res.redirect('/admin/accounts')
+        }).catch(err => {
+            console.log(err)
+            next()
+        })
+    } else {
+        res.render('admin/vwAccounts/changeFail')
+    }
+
+})
 // ============ Quản lý phân quyên cho editor ============ //
 router.get('/role', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {
@@ -226,12 +340,12 @@ router.post('/renewal', auth, (req, res) => {
         var now = moment();
         var to = moment().add(7, 'days');
         userModel.renewal(req.body.selectUser, to.format('YYYY-MM-DD'))
-        .then(id=>{
-            res.render('admin/vwAccounts/giaHanSuccess', {
-                layout: 'main_2.hbs',
-                toDate: to.format('DD/MM/YYYY')
+            .then(id => {
+                res.render('admin/vwAccounts/giaHanSuccess', {
+                    layout: 'main_2.hbs',
+                    toDate: to.format('DD/MM/YYYY')
+                })
             })
-        })
     }
 })
 module.exports = router;

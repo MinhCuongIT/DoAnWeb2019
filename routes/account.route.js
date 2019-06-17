@@ -44,7 +44,7 @@ router.post('/register', (req, res, next) => {
             next()
         })
     } else {
-        res.end("Mat khau khong khop!")
+        res.render('admin/vwAccounts/changeFail')
     }
 
 

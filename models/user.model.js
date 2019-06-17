@@ -21,7 +21,7 @@ module.exports = {
         return db.load(`update users set password = '${newPassword}' where UserID = ${userId}`);
     },
     single: username => {
-        return db.load(`select * from users where username = ${username}`);
+        return db.load(`select * from users where username = '${username}'`);
     },
     singleByUserID: userId => {
         return db.load(`select * from users where UserID = ${userId}`);
