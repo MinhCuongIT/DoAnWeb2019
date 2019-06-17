@@ -14,6 +14,12 @@ module.exports = {
     renewal: (userId,date) => {
         return db.load(`update users set date_update = '${date}' where UserID = ${userId}`);
     },
+    updateGeneral: (name, email, dob, userId)=>{
+        return db.load(`update users set name = '${name}', email = '${email}', dob = '${dob}' where UserID = ${userId}`);
+    },
+    updatePassword: (userId, newPassword) => {
+        return db.load(`update users set password = '${newPassword}' where UserID = ${userId}`);
+    },
     single: username => {
         return db.load(`select * from users where username = ${username}`);
     },

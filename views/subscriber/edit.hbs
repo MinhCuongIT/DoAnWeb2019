@@ -1,0 +1,61 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(function () {
+        $('#txtDOB').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true
+        });
+    })
+</script>
+{{/section}}
+<div class="card shadow">
+    <form method="POST" action="">
+        <div class="card-body">
+            <h4 class="card-title text-center">Cập nhật thông tin tài khoản</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                    <b>Mã tài khoản:</b> {{authUser.UserID}}
+                </li>
+                <li class="list-group-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <b>Tên đăng nhập:</b> {{authUser.username}}
+                </li>
+                <li class="list-group-item">
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <b>Tên hiển thị:</b> <input value="{{authUser.name}}" autofocus required type="text"
+                        class="form-control" id="name" name="name">
+                </li>
+                <li class="list-group-item">
+                    <i class="fa fa-inbox" aria-hidden="true"></i>
+                    <b>Eamil:</b> <input value="{{authUser.email}}" required type="text" class="form-control"
+                        id="txtEmail" name="email">
+                </li>
+                <li class="list-group-item">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <b>Ngày sinh:</b> <input value="{{myDatetime authUser.dob}}" required type="text"
+                        class="form-control" id="txtDOB" name="dob">
+                </li>
+            </ul>
+            <div class="row text-center" style="justify-content: center">
+                <button type="submit" class="btn btn-outline-success mt-3">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Cập nhật
+                </button>
+                <a style="margin-left: 1rem" class="btn btn-outline-primary mt-3" href="/account/profile/changepassword" role="button">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    Đổi mật khẩu
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -36,6 +36,12 @@
                         <b>Ngày sinh:</b> {{ myDatetime authUser.dob}}
                     </li>
                 </ul>
+                {{#if showEditButton}}
+                    <a name="" id="" class="btn btn-outline-success mt-3" href="/account/profile/edit" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Cập nhật thông tin
+                    </a>
+                {{/if}}
             </div>
         </div>
     </div>
