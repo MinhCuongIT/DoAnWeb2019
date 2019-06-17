@@ -1,3 +1,20 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(function () {
+        $('#txtDOB').datetimepicker({
+            format: 'd/m/Y',
+        });
+    })
+</script>
+{{/section}}
 <div class="card shadow">
     <div class="card-header">
         <h4>
@@ -29,10 +46,11 @@
                 <input  type="text" class="form-control" id="email" name="email"
                     value="{{this.accountManage.email}}">
             </div>
-            <div class="form-group">
+           
+             <div class="form-group">
                 <label for="dob"><b>Ngày sinh</b></label>
-                <input  type="text" class="form-control" id="dob" name="dob"
-                    value="{{DateFormat this.accountManage.dob}}">
+                <input  type="text" class="form-control" id="txtDOB" name="dob"
+                value="{{DateFormat this.accountManage.dob}}">
             </div>
             
 
@@ -52,15 +70,20 @@
                 <input  type="text" class="form-control" id="type" name="type"
                     value="{{this.accountManage.type}}">
             </div>
+         
+            
             <div class="form-group">
                 <label for="status"><b>Trạng thái</b></label>
-                <span ><small>(Nhập 1 nếu block, 0 nếu Active)<small></span>
-                <input style="color: {{{Mau this.accountManage.status}}}" type="text" class="form-control" id="status" name="status"
-                     value="{{TrangThai this.accountManage.status}}">
+                <select class="custom-select" name='status'>
+                     
+                    <option {{{select 0 this.accountManage.status}}} value='0' >Active</option>
+                    <option {{{select 1 this.accountManage.status}}} value='1'>Block</option>
+                </select>
+                
             </div>
             <div class="form-group">
                 <label for="date_register"><b>Ngày đăng kí</b></label>
-                <input  type="text" class="form-control" id="date_register" name="date_register"
+                <input readonly type="text" class="form-control" id="date_register" name="date_register"
                     value="{{DateFormat this.accountManage.date_register}}">
             </div>
   </div>

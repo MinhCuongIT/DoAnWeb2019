@@ -261,8 +261,9 @@ router.get('/accountManage/detail/:id', auth, (req, res) => {
     else {
         accountManageModel.single(id)
             .then(rows => {
+                console.log(rows[0])
                 if (rows.length > 0) {
-                    res.render('admin/vwAccountManage/detail', {
+                    res.render('admin/vwAccountManage/Detail', {
                         error: false,
                         accountManage: rows[0],
                         layout: 'main_2.hbs'
@@ -342,6 +343,42 @@ router.post('/accountManage/delete', auth, (req, res) => {
             console.log(err)
         })
 })
+router.get('/accountManage/delete/:id', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var id = req.params.id
+    if (isNaN(id)) {
+        res.render('admin/vwAccountManage/index', {
+            error: true,
+            layout: 'main_2.hbs'
+        })
+    }
+    else {
+        accountManageModel.single(id)
+            .then(rows => {
+                console.log(rows[0])
+                if (rows.length > 0) {
+                    res.render('admin/vwAccountManage/Detail', {
+                        error: false,
+                        accountManage: rows[0],
+                        layout: 'main_2.hbs'
+                    })
+                }
+                else {
+                    res.render('admin/vwAccountManage/index', {
+                        error: true,
+                        layout: 'main_2.hbs'
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                res.end("Co loi xay ra!")
+            })
+    }
+
+})
 
 
  
@@ -361,7 +398,9 @@ router.post('/accountManage/delete', auth, (req, res) => {
 
 
 
-
+Handlebars.registerHelper('select', function(selected, option) {
+    return (selected == option) ? 'selected="selected"' : '';
+});
 
 Handlebars.registerHelper("Button", function(currentValue){
     if(currentValue >0){
