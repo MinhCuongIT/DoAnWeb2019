@@ -64,23 +64,23 @@ module.exports = {
         return db.load(`
         select *
         from post p left join categories c on p.tagId = c.CatID
-        where p.trangThai = 'Đã xuất bản'
+        where p.trangThai = 'Đã xuất bản' and p.premium = 0
         limit ${limit} offset ${offset}
         `);
     },
     countByCat: () => {
-        return db.load(`select count(*) as total from post where trangThai = 'Đã xuất bản'`);
+        return db.load(`select count(*) as total from post where trangThai = 'Đã xuất bản' and premium = 0`);
     },
     pageByCatWithID: (CatID, limit, offset) => {
         return db.load(`
         select *
         from post p left join categories c on p.tagId = c.CatID
-        where p.tagId = ${CatID} and p.trangThai = 'Đã xuất bản'
+        where p.tagId = ${CatID} and p.trangThai = 'Đã xuất bản' and p.premium = 0
         limit ${limit} offset ${offset}
         `);
     },
     countByCatWithID: (CatID) => {
-        return db.load(`select count(*) as total from post p where p.tagId = ${CatID} and p.trangThai = 'Đã xuất bản'`);
+        return db.load(`select count(*) as total from post p where p.tagId = ${CatID} and p.trangThai = 'Đã xuất bản' and p.premium = 0`);
     },
     single: id => {
         return db.load(`SELECT *
@@ -90,7 +90,7 @@ module.exports = {
     single1: id => {
         return db.load(`SELECT *
                         FROM post p left join categories c on p.tagId = c.CatID
-                        WHERE p.PostID = ${id} AND  p.trangThai = 'Đã xuất bản'`);
+                        WHERE p.PostID = ${id} AND  p.trangThai = 'Đã xuất bản' and p.premium = 0`);
     },
     acceptByPostID: (postId, editorId) => {
         return db.load(`update post set trangThai = 'Đã được duyệt', editorId = ${editorId} where PostID = ${postId}`);
@@ -108,7 +108,7 @@ module.exports = {
     postCungChuyenMuc: (CatID, PostID) => {
         return db.load(`SELECT *
                         FROM post p left join categories c on p.tagID = c.CatID
-                        WHERE p.catID = ${CatID} AND p.PostID <> ${PostID} and p.trangThai = 'Đã xuất bản'
+                        WHERE p.catID = ${CatID} AND p.PostID <> ${PostID} and p.trangThai = 'Đã xuất bản' and p.premium = 0
                         limit 5`);
     },
     commentByPostID: PostId => {

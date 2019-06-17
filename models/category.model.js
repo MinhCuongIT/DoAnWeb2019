@@ -18,7 +18,7 @@ module.exports = {
         return db.load(`
             SELECT  DISTINCT *
             FROM    post p left join categories c on p.tagId = c.CatID
-            WHERE p.trangThai = 'Đã xuất bản'
+            WHERE p.trangThai = 'Đã xuất bản' and p.premium = 0
             ORDER BY p.date desc
             LIMIT 10
         `);
@@ -27,7 +27,7 @@ module.exports = {
         return db.load(`
             SELECT  DISTINCT *
             FROM    post p left join categories c on p.tagId = c.CatID
-            WHERE p.trangThai = 'Đã xuất bản'
+            WHERE p.trangThai = 'Đã xuất bản' and p.premium = 0
             ORDER BY p.views desc
             LIMIT 10
         `);
@@ -36,7 +36,7 @@ module.exports = {
         return db.load(`
             SELECT  DISTINCT *
             FROM    post
-            WHERE catId = ${id} and trangThai = 'Đã xuất bản'
+            WHERE catId = ${id} and trangThai = 'Đã xuất bản' and premium = 0
             Order by date desc
             LIMIT 3
         `);
@@ -45,7 +45,7 @@ module.exports = {
         return db.load(`
             SELECT  DISTINCT *
             FROM    post p left join categories c on p.tagId = c.CatID
-            WHERE p.trangThai = 'Đã xuất bản'
+            WHERE p.trangThai = 'Đã xuất bản' and p.premium = 0
             ORDER BY p.date desc, p.views desc
             LIMIT 6
         `);
