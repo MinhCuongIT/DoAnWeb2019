@@ -35,7 +35,9 @@ router.post('/register', (req, res, next) => {
             email: req.body.email,
             name: req.body.name,
             dob: dob,
-            type: req.body.rbLoai
+            type: req.body.rbLoai,
+            date_register:moment().format('YYYY-MM-DD'),
+            date_update:moment().format('YYYY-MM-DD')
         }
         userModel.add(entity).then(id => {
             res.redirect('/account/login')

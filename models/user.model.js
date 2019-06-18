@@ -9,7 +9,7 @@ module.exports = {
         return db.load("select * from users where type = 'Editor'");
     },
     allSubscriber: () => {
-        return db.load("select * from users where type = 'Subscriber'");
+        return db.load(`select UserID, username, name, DATE_FORMAT(date_update,'%d/%m/%Y')  as date_update ,(7-DATEDIFF( now(),date_update)) AS Date from users where type = 'Subscriber'`);
     },
     renewal: (userId, date) => {
         return db.load(`update users set date_update = '${date}' where UserID = ${userId}`);
@@ -37,8 +37,9 @@ module.exports = {
         return db.add('users', entity);
     },
     update: entity => {
-        return db.update('users', 'username', entity)
+        return db.update('users', 'UserID', entity)
     },
+    
     delete: username => {
         return db.delete('users', 'username', username)
     }

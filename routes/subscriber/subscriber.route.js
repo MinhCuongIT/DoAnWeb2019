@@ -20,8 +20,8 @@ router.get('/', auth, (req, res) => {
 
             console.log(`   Ngay hien tai ${now}
                             Ngay het han: ${date}`)
-
-            if (now <= date) {
+            var result = DATEDIFF( now,date)
+            if (result > 0) {
                 var page = req.query.page || 1
                 if (page < 1) {
                     page = 1

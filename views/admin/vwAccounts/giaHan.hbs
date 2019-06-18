@@ -1,4 +1,46 @@
 <div class="card shadow">
+    <h1 class="card-header">
+       Gia hạn tài khoản
+    </h1>
+  <form method="POST"  >
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Tên người dùng</th>
+                 <th scope="col">Họ tên</th>
+                  <th scope="col">Ngày gia hạn</th>
+               <th>Số ngày còn lại</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.user}}
+            <tr>
+                <th class="text-center" scope="row">{{UserID}}</th>
+                <td>{{username}}</td>
+                 <td>{{name}}</td>
+                  <td>{{date_update}}</td>
+                  <td ><b>{{Thoihan this.Date }}</b></td> 
+                  <td ><a role="button"  class="btn btn-primary btn-sm {{{Button this.Date}}}" href="/admin/accounts/giaHan/{{UserID}}" role="button">Gia hạn</a></td>
+                    
+                    
+                
+            </tr>
+            {{/each}}
+
+        </tbody>
+        
+    </table>
+     <a class="btn btn-primary " href="/account/dashboard " role="button">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+                List
+            </a>
+    </form>
+     
+</div>
+
+{{!-- <div class="card shadow">
     <div class="card-header text-center">
         <b>Gia hạn premium cho đọc giả</b>
     </div>
@@ -27,4 +69,4 @@
             </div>
         </form>
     </div>
-</div>
+</div> --}}

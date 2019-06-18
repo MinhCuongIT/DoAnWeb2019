@@ -4,7 +4,8 @@ var postModel = require('../../models/post.model')
 var userModel = require('../../models/user.model')
 var auth = require('../../middlewares/auth')
 var moment = require('moment')
-var categoryModel = require('../../models/category.model');
+var Handlebars = require('handlebars')
+var categoryModel = require('../../models/category.model')
 var bcrypt = require('bcrypt')
 
 // ============ Màn hình chủ ============ //
@@ -266,7 +267,9 @@ router.post('/accounts/addadmin', auth, (req, res) => {
             email: req.body.email,
             name: req.body.name,
             dob: dob,
-            type: 'Admin'
+            type: 'Admin',
+            date_register:moment().format('YYYY-MM-DD'),
+            date_update:moment().format('YYYY-MM-DD') 
         }
         userModel.add(entity).then(id => {
             res.redirect('/admin/accounts')
@@ -324,40 +327,110 @@ router.post('/role', auth, (req, res) => {
     }
 })
 // ============ Quản lý Gia Han ============ //
-router.get('/renewal', auth, (req, res) => {
+router.get('/accounts/giaHan', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {
         throw new Error('You do not have permission to access this link')
     }
-    userModel.allSubscriber()
-        .then(rowsS => {
-            res.render('admin/vwAccounts/giaHan', {
-                layout: 'main_ad.hbs',
-                users: rowsS,
-            })
+    userModel.allSubscriber().then(rows => {
+      
+       // res.json(rows)
+       res.render('admin/vwAccounts/giaHan', {
+        user: rows,
+        layout: 'main_ad.hbs'
+       })
+   }).catch(err => {
+       console.log(err)
+   })
+})
+
+router.get('/accounts/giaHan/:id', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    console.log(moment().format('YYYY-MM-DD'))
+    var entity={
+        UserID:req.params.id,
+        date_update:moment().format('YYYY-MM-DD')
+    }
+   
+    userModel.update(entity)
+  
+        .then(n => {
+            console.log(entity)
+            res.redirect('/admin/accounts/giaHan')
         })
         .catch(err => {
             console.log(err)
         })
 })
-router.post('/renewal', auth, (req, res) => {
-    if (res.locals.authUser.type !== 'Admin') {
-        throw new Error('You do not have permission to access this link')
+
+
+
+
+
+
+
+
+
+
+
+
+Handlebars.registerHelper('select', function(selected, option) {
+    return (selected == option) ? 'selected="selected"' : '';
+});
+
+Handlebars.registerHelper("Button", function(currentValue){
+    if(currentValue >0){
+        return "disabled"
+    }else{
+        return ""
     }
-    if (isNaN(req.body.selectUser)) {
-        res.render('admin/vwAccounts/giaHanFail', {
-            layout: 'main_ad.hbs'
-        })
+    
+})
+
+
+ Handlebars.registerHelper("TrangThai", function(currentValue){
+     if(currentValue == '1'){
+         return "Block"
+     }
+     else
+     {
+         return "Active"
+     }
+ })
+ Handlebars.registerHelper("Thoihan", function(currentValue){
+    if(currentValue <= 0){
+        return "Hết hạn"
     }
-    else {
-        var now = moment();
-        var to = moment().add(7, 'days');
-        userModel.renewal(req.body.selectUser, to.format('YYYY-MM-DD'))
-            .then(id => {
-                res.render('admin/vwAccounts/giaHanSuccess', {
-                    layout: 'main_ad.hbs',
-                    toDate: to.format('DD/MM/YYYY')
-                })
-            })
+    else
+    {
+        return currentValue
     }
 })
+ Handlebars.registerHelper("Mau", function(currentValue){
+     if(currentValue =='1'){
+         return "red"
+     }else{
+        return "green"
+     }
+     
+ })
+ Handlebars.registerHelper("Dong", function(currentValue){
+    if(currentValue =='1'){
+        return "alert-danger"
+    }else{
+       return "alert-success"
+    }
+ })
+ Handlebars.registerHelper("LoaiTaiKhoan", function(currentValue){
+    if(currentValue == '1'){
+        return "Quản lí";
+    } else{
+        return "Nhân viên"
+    }
+})
+Handlebars.registerHelper("DateFormat", function(currentValue){
+    return  moment(currentValue).format("YYYY-MM-DD");
+})
+
 module.exports = router;
