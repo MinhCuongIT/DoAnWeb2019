@@ -15,19 +15,35 @@ var bcrypt = require('bcrypt')
 // ============ Quản lý danh mục ============ //
 
 router.get('/categories/', auth, (req, res) => {
+
     if (res.locals.authUser.type !== 'Admin') {
         throw new Error('You do not have permission to access this link')
     }
-    categoryModel.allParent().then(rows => {
+
+    categoryModel.all().then(rows => {
         res.render('admin/vwCategories/index', {
             categories: rows,
-            layout: 'main_2.hbs'
+            layout: 'main_ad.hbs'
         })
     }).catch(err => {
         console.log(err)
     })
 })
+router.get('/categories/add', (req, res) => { 
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    categoryModel.allParent().then(rows => {
+       // res.json(rows)
+       res.render('admin/vwCategories/add', {
+           categories: rows,
+       })
+   }).catch(err => {
+       console.log(err)
+   })
 
+   
+})
 router.get('/categories/edit/:id', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {
         throw new Error('You do not have permission to access this link')
@@ -36,24 +52,25 @@ router.get('/categories/edit/:id', auth, (req, res) => {
     if (isNaN(id)) {
         res.render('admin/vwCategories/edit', {
             error: true,
-            layout: 'main_2.hbs'
+            layout: 'main_ad.hbs'
         })
     }
     else {
         console.log(id)
         categoryModel.single(id)
             .then(rows => {
+                console.log(rows[0])
                 if (rows.length > 0) {
                     res.render('admin/vwCategories/edit', {
                         error: false,
                         category: rows[0],
-                        layout: 'main_2.hbs'
+                        layout: 'main_ad.hbs'
                     })
                 }
                 else {
                     res.render('admin/vwCategories/edit', {
                         error: true,
-                        layout: 'main_2.hbs'
+                        layout: 'main_ad.hbs'
                     })
                 }
             })
@@ -65,26 +82,19 @@ router.get('/categories/edit/:id', auth, (req, res) => {
 
 })
 
-router.get('/categories/add', auth, (req, res) => {
-    if (res.locals.authUser.type !== 'Admin') {
-        throw new Error('You do not have permission to access this link')
-    }
-    // res.end("Add new category")
-    res.render('admin/vwCategories/add', {
-        layout: 'main_2.hbs'
-    })
-})
+
 
 router.post('/categories/add', (req, res) => {
+    // console.log(req.body)
+    // res.end('...')
     if (res.locals.authUser.type !== 'Admin') {
         throw new Error('You do not have permission to access this link')
     }
-    // console.log(req.body)
-    // res.end('...')
-
     categoryModel.add({
-        CatName: req.body.CatName,
-        CatFather: 0
+        CatName:req.body.CatName,
+
+        CatFather:req.body.CatParent,
+        
     })
         .then(id => {
             console.log(`insertId: ${id}`)
@@ -94,6 +104,8 @@ router.post('/categories/add', (req, res) => {
             console.log(err)
         })
 })
+
+
 
 router.post('/categories/update', auth, (req, res) => {
     if (res.locals.authUser.type !== 'Admin') {
@@ -131,7 +143,7 @@ router.get('/post', auth, (req, res) => {
     postModel.allToPublish()
         .then(rows => {
             res.render('admin/vwPosts/index', {
-                layout: 'main_2.hbs',
+                layout: 'main_ad.hbs',
                 listPost: rows,
             })
         }).catch(err => {
@@ -160,7 +172,7 @@ router.get('/accounts', auth, (req, res) => {
     userModel.all()
         .then(rows => {
             res.render('admin/vwAccounts/viewAccount', {
-                layout: 'main_2.hbs',
+                layout: 'main_ad.hbs',
                 users: rows
             })
         })
@@ -174,7 +186,7 @@ router.get('/accounts/edit/:user', auth, (req, res) => {
     userModel.singleByUserID(userId)
         .then(rows => {
             res.render('admin/vwAccounts/editAccount', {
-                layout: 'main_2.hbs',
+                layout: 'main_ad.hbs',
                 user: rows[0]
             })
         })
@@ -200,7 +212,7 @@ router.get('/accounts/changepassword/:user', auth, (req, res) => {
     var userId = req.params.user
     console.log(`Doi mat khau cho ${userId}`)
     res.render('subscriber/changePassword', {
-        layout: 'main_2.hbs'
+        layout: 'main_ad.hbs'
     })
 })
 
@@ -239,7 +251,7 @@ router.post('/accounts/changepassword/:user', auth, (req, res) => {
 
 router.get('/accounts/addadmin', auth, (req, res) => {
     res.render('admin/vwAccounts/addAccountAdmin', {
-        layout: 'main_2.hbs'
+        layout: 'main_ad.hbs'
     })
 })
 
@@ -277,7 +289,7 @@ router.get('/role', auth, (req, res) => {
             categoryModel.allTag()
                 .then(rowsT => {
                     res.render('admin/vwAccounts/phanQuyen', {
-                        layout: 'main_2.hbs',
+                        layout: 'main_ad.hbs',
                         users: rowsE,
                         cats: rowsT
                     })
@@ -296,14 +308,14 @@ router.post('/role', auth, (req, res) => {
     }
     if (isNaN(req.body.selectUser) || isNaN(req.body.selectCat)) {
         res.render('admin/vwAccounts/fail', {
-            layout: 'main_2.hbs'
+            layout: 'main_ad.hbs'
         })
     }
     else {
         userModel.setRole(req.body.selectUser, req.body.selectCat)
             .then(id => {
                 res.render('admin/vwAccounts/success', {
-                    layout: 'main_2.hbs'
+                    layout: 'main_ad.hbs'
                 })
             })
             .catch(err => {
@@ -319,7 +331,7 @@ router.get('/renewal', auth, (req, res) => {
     userModel.allSubscriber()
         .then(rowsS => {
             res.render('admin/vwAccounts/giaHan', {
-                layout: 'main_2.hbs',
+                layout: 'main_ad.hbs',
                 users: rowsS,
             })
         })
@@ -333,7 +345,7 @@ router.post('/renewal', auth, (req, res) => {
     }
     if (isNaN(req.body.selectUser)) {
         res.render('admin/vwAccounts/giaHanFail', {
-            layout: 'main_2.hbs'
+            layout: 'main_ad.hbs'
         })
     }
     else {
@@ -342,7 +354,7 @@ router.post('/renewal', auth, (req, res) => {
         userModel.renewal(req.body.selectUser, to.format('YYYY-MM-DD'))
             .then(id => {
                 res.render('admin/vwAccounts/giaHanSuccess', {
-                    layout: 'main_2.hbs',
+                    layout: 'main_ad.hbs',
                     toDate: to.format('DD/MM/YYYY')
                 })
             })

@@ -4,9 +4,11 @@ var createConnection = () => {
     return mysql.createConnection({
         host: 'localhost',
         user: 'root',
+        password: 'matkhau@123',
+        database: 'dack',
         port: '3306',
-        database: 'dack'
     });
+   
 }
 module.exports = {
     load: sql => {

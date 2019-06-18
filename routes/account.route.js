@@ -158,7 +158,7 @@ router.get('/dashboard', auth, (req, res, next) => {
     switch (res.locals.authUser.type) {
         case 'Admin':
             res.render('admin/index', {
-                layout: 'main_2.hbs'
+                layout: 'main_ad.hbs'
             })
             break;
         case 'Writer':
