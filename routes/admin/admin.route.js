@@ -7,7 +7,7 @@ var moment = require('moment')
 var Handlebars = require('handlebars')
 var categoryModel = require('../../models/category.model')
 var bcrypt = require('bcrypt')
-
+var tagsModel=require('../../models/tag.model')
 // ============ Màn hình chủ ============ //
 // router.get('/', auth, (req, res) => {
 //     res.end('Man hinh chu cua admin')
@@ -38,6 +38,7 @@ router.get('/categories/add', (req, res) => {
        // res.json(rows)
        res.render('admin/vwCategories/add', {
            categories: rows,
+           layout: 'main_ad.hbs'
        })
    }).catch(err => {
        console.log(err)
@@ -135,6 +136,126 @@ router.post('/categories/delete', auth, (req, res) => {
 })
 
 // ============ Quản lý tag ============ //
+router.get('/tags/', auth, (req, res) => {
+
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+
+    tagsModel.all().then(rows => {
+        res.render('admin/vwTags/index', {
+            tags: rows,
+            layout: 'main_ad.hbs'
+        })
+    }).catch(err => {
+        console.log(err)
+    })
+})
+router.get('/tags/add', (req, res) => { 
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    tagsModel.all().then(rows => {
+       // res.json(rows)
+       res.render('admin/vwTags/add', {
+        tags: rows,
+        layout: 'main_ad.hbs'
+       })
+   }).catch(err => {
+       console.log(err)
+   })
+
+   
+})
+router.get('/tags/edit/:id', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    var id = req.params.id
+    if (isNaN(id)) {
+        res.render('admin/vwTags/edit', {
+            error: true,
+            layout: 'main_ad.hbs'
+        })
+    }
+    else {
+        console.log(id)
+        tagsModel.single(id)
+            .then(rows => {
+                console.log(rows[0])
+                if (rows.length > 0) {
+                    res.render('admin/vwTags/edit', {
+                        error: false,
+                        tags: rows[0],
+                        layout: 'main_ad.hbs'
+                    })
+                }
+                else {
+                    res.render('admin/vwTags/edit', {
+                        error: true,
+                        layout: 'main_ad.hbs'
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                res.end("Co loi xay ra!")
+            })
+    }
+
+})
+
+
+
+router.post('/tags/add', (req, res) => {
+    // console.log(req.body)
+    // res.end('...')
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    tagsModel.add({
+        name:req.body.name,
+
+       
+        
+    })
+        .then(id => {
+            console.log(`insertId: ${id}`)
+            res.redirect('/admin/tags')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+
+
+router.post('/tags/update', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    tagsModel.update(req.body)
+        .then(n => {
+            res.redirect('/admin/tags')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+router.post('/tags/delete', auth, (req, res) => {
+    if (res.locals.authUser.type !== 'Admin') {
+        throw new Error('You do not have permission to access this link')
+    }
+    tagsModel.delete(req.body.id)
+        .then(n => {
+            res.redirect('/admin/tags')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 
 // ============ Quản lý xuất bản bài post ============ //
 router.get('/post', auth, (req, res) => {

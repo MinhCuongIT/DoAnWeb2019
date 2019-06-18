@@ -1,0 +1,40 @@
+<div class="card shadow">
+    <div class="card-header">
+        Edit tags
+    </div>
+    <div class="card-body">
+        {{#if this.error}}
+        <div class="alert alert-danger" role="alert">
+            Invalid tagsID. <a href="/admin/tags" class="alert-link">Go back</a>.
+        </div>
+        {{else}}
+        <form method="POST" action="/admin/tags/update">
+            <div class="form-group">
+                <label for="txtid">#</label>
+                <input readonly type="text" class="form-control" id="txtid" name="id"
+                    value="{{this.tags.id}}">
+            </div>
+            <div class="form-group">
+                <label for="name">tags Name</label>
+                <input autofocus type="text" class="form-control" id="name" name="name"
+                    placeholder="Enter tags Name" value="{{this.tags.name}}">
+            </div>
+            <a class="btn btn-primary" href="/admin/tags" role="button">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+                List
+            </a>
+            <button type="submit" class="btn btn-danger" formaction="/admin/tags/delete">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                Delete
+            </button>
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Save
+            </button>
+        </form>
+        {{/if}}
+
+
+
+    </div>
+</div>

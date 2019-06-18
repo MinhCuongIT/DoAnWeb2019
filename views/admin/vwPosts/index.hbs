@@ -5,13 +5,12 @@
 {{#section 'js'}}
 
 {{/section}}
-<div class="card shadow">
-    <div class="card-header">
+
 <div class="row w-100 m-3" style="justify-content: center">
-    <h4 style="margin: 0 3px" role="button">Xuất bản bài viết</h4>
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor" role="button">Danh sách bài viết Draft</a>
+    <a style="margin: 0 3px" class="btn btn-outline-success" href="/editor/viewmypost" role="button">Xem danh sách bài viết</a>
 </div>
-</div>
- <div class="card-body">
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -20,35 +19,27 @@
             <th style="width: 7rem" scope="col">Danh mục</th>
             <th scope="col">Ngày</th>
             <th scope="col">Mô tả ngắn</th>
-            <th style="width: 10rem" scope="col">Biên tập viên</th>
+            <th style="width: 9rem" scope="col">Phóng viên</th>
             <th style="width: 10rem" scope="col">Trạng thái</th>
-            <th style="width: 8rem" scope="col" class="text-right">
-                <i class="fa fa-newspaper" aria-hidden="true"></i>
-                Xuất bản
-            </th>
         </tr>
     </thead>
     <tbody>
-        <form method="POST">
-            {{#each this.listPost}}
-            <tr>
-                <th class="text-center" scope="row">{{PostID}}</th>
-                <td>{{title}}</td>
-                <td>{{CatName}}</td>
-                <td>{{myDatetime date}}</td>
-                <td>{{moTaNgan}}</td>
-                <td>{{name}}</td>
-                <td>{{trangThai}}</td>
-                <td class="text-right">
-                    <button type="submit" class="btn btn-outline-success btn-sm" formaction="/admin/post/{{PostID}}">
-                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                        Xuất bản
-                    </button>
-                </td>
-                {{/each}}
-        </form>
+        {{#each this.listPost}}
+        <tr>
+            <th class="text-center" scope="row">{{PostID}}</th>
+            <td>{{title}}</td>
+            <td>{{CatName}}</td>
+            <td>{{myDatetime date}}</td>
+            <td>{{moTaNgan}}</td>
+            <td>{{name}}</td>
+            <td>
+                
+                {{#if showOk}}
+                    <i class="fa fa-check-circle-o" style="color:green" aria-hidden="true"></i>
+                {{/if}}
+                {{trangThai}}</td>
+        </tr>
+        {{/each}}
 
     </tbody>
 </table>
-</div>
-</div>

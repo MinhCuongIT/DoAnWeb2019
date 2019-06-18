@@ -15,37 +15,14 @@
 <body style="background-color:rgb(198, 255, 198)">
 
     <nav style="padding: 0rem 1rem  ;background-color:#28a745 !important" class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow  ">
-        <a class="navbar-brand" href="/account/dashboard">
+        <a class="navbar-brand" href="/writer">
             <img style="border-radius: 50%" src="/logo.png" alt="" width="50" height="50">
         </a>
         <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b>QUẢN LÝ</b></a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item text-success" href="/admin/categories">QUẢN LÝ CHUYÊN MỤC</a>
-      <a class="dropdown-item text-success" href="/admin/tags/">QUẢN LÝ TAG</a>
-      <a class="dropdown-item text-success" href="/admin/post/">QUẢN LÝ BÀI VIẾT</a>
-       <a class="dropdown-item text-success" href="/admin/accounts">QUẢN LÝ TÀI KHOẢN</a>
-    </div>
-  </li>
-               
-  <li class="nav-item">
-    <a class="nav-link text-light" href="/admin/accounts/giaHan"><b>GIA HẠN ĐỘC GIẢ</b></a>
-  </li>
-  <li class="nav-item ">
-    <a class="nav-link text-light" href="/admin/role"><b>PHÂN CÔNG CHUYÊN MỤC</b></a>
-  </li>
-               
-
-            </ul>
-
-            <form id="frmSignout" action="/account/logout" method="POST"></form>
+  <form id="frmSignout" action="/account/logout" method="POST"></form>
             <ul class="navbar-nav">
                 {{#if isAuthenticated}}
                 <li class="nav-item dropdown">
@@ -86,6 +63,7 @@
                 {{/if}}
             </ul>
         </div>
+      
     </nav>
 
     <div class="container-fluid mt-4" >
