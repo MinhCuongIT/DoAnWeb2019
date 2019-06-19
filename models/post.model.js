@@ -8,9 +8,9 @@ module.exports = {
     FTS: (searchText) => {
         return db.load(`
         SELECT *
-        FROM post 
+        FROM post p, categories c
         WHERE MATCH (title,moTaNgan,content) AGAINST ('${searchText}' IN NATURAL LANGUAGE MODE)
-        and trangThai = 'Đã xuất bản' and premium = 0 limit 10
+        and trangThai = 'Đã xuất bản' and premium = 0 and p.tagId = c.CatID limit 10 
         `);
     },
     allPremium: () => {
