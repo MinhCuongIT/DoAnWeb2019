@@ -95,7 +95,7 @@ router.get('/profile', auth, (req, res, next) => {
     // console.log(res.locals.authUser.dob)
     res.render('vwAccount/profile', {
         showEditButton: res.locals.authUser.type == 'Subscriber' ? true : false,
-        layout: 'main_ad.hbs'
+        layout: 'main_2.hbs'
     })
 })
 

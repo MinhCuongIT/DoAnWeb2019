@@ -12,7 +12,7 @@ router.get('/', auth, (req, res) => {
     categoryModel.allTag()
         .then(rows => {
             res.render('writer/index', {
-                layout: 'main_writer.hbs',
+                layout: 'main_2.hbs',
                 listCat: rows
             })
         })
@@ -76,7 +76,7 @@ router.get('/viewpost', auth, (req, res) => {
                 }
             });
             res.render('writer/viewPost', {
-                layout: 'main_writer.hbs',
+                layout: 'main_2.hbs',
                 listPost: rows
             })
         })
@@ -104,7 +104,7 @@ router.get('/edit/:post', auth, (req, res) => {
                         }
                     });
                     res.render('writer/edit', {
-                        layout: 'main_writer.hbs',
+                        layout: 'main_2.hbs',
                         listCat: rows,
                         info: rowsPost[0]
                     })
