@@ -62,26 +62,29 @@ router.post('/decline/:post', auth, (req, res) => {
 })
 
 router.get('/viewmypost', auth, (req, res) => {
-    if (res.locals.authUser.type !== 'Editor') {
+    if (res.locals.authUser.type === 'Editor' || res.locals.authUser.type === 'Admin') {
+        postModel.allByEditor(res.locals.authUser.UserID)
+            .then(rows => {
+
+                rows.forEach(e => {
+                    if (e.trangThai == 'Đã được duyệt') {
+                        e.showOk = true
+                    }
+                });
+
+                res.render('editor/viewMyPost', {
+                    layout: 'main_2.hbs',
+                    listPost: rows
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    else{
         throw new Error('You do not have permission to access this link')
     }
-    postModel.allByEditor(res.locals.authUser.UserID)
-    .then(rows=>{
-
-        rows.forEach(e => {
-            if (e.trangThai == 'Đã được duyệt') {
-                e.showOk = true
-            }
-        });
-
-        res.render('editor/viewMyPost', {
-            layout: 'main_2.hbs',
-            listPost: rows
-        })
-    })
-    .catch(err=>{
-        console.log(err)
-    })
+  
 
 })
 module.exports = router;
