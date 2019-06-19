@@ -4,7 +4,7 @@ var createConnection = () => {
     return mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'matkhau@123',
+        // password: 'matkhau@123',
         database: 'dack',
         port: '3306',
     });
